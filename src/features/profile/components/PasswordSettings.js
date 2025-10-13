@@ -68,7 +68,7 @@ export const PasswordSettings = () => {
     try {
       const token = localStorage.getItem("token")
       const response = await axios.post(
-  "https://sportifyauth.onrender.com/api/auth/change-password",
+        "http://localhost:5000/api/auth/change-password",
         {
           currentPassword,
           newPassword,

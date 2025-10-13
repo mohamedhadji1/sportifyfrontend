@@ -23,7 +23,7 @@ const SessionManagement = () => {
     try {
       const token = localStorage.getItem("token")
       if (token) {
-  const response = await axios.get("https://sportifyauth.onrender.com/api/auth/sessions", {
+        const response = await axios.get("http://localhost:5000/api/auth/sessions", {
           headers: { "x-auth-token": token },
         })
         
@@ -42,7 +42,7 @@ const SessionManagement = () => {
   const terminateSession = async (sessionId) => {
     try {
       const token = localStorage.getItem("token")
-  const response = await axios.delete(`https://sportifyauth.onrender.com/api/auth/sessions/${sessionId}`, {
+      const response = await axios.delete(`http://localhost:5000/api/auth/sessions/${sessionId}`, {
         headers: { "x-auth-token": token },
       })
       
@@ -64,7 +64,7 @@ const SessionManagement = () => {
   const terminateAllSessions = async () => {
     try {
       const token = localStorage.getItem("token")
-  const response = await axios.delete("https://sportifyauth.onrender.com/api/auth/sessions", {
+      const response = await axios.delete("http://localhost:5000/api/auth/sessions", {
         headers: { "x-auth-token": token },
       })
       

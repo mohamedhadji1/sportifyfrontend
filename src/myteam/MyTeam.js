@@ -394,7 +394,7 @@ const MyTeam = () => {
                 {team.members.map((member) => (
                   <div key={member._id} className="bg-neutral-700 rounded-lg p-4 flex flex-col items-center text-center shadow-md hover:shadow-sky-500/20 transition-shadow duration-300">
                     <img 
-                      src={member.profileImage ? `https://sportifyauth.onrender.com${member.profileImage}` : 'https://i.pravatar.cc/150?u=a042581f4e29026704d'} 
+                      src={member.profileImage ? `http://localhost:5000${member.profileImage}` : 'https://i.pravatar.cc/150?u=a042581f4e29026704d'} 
                       alt={member.fullName} 
                       className="w-24 h-24 rounded-full mb-4 border-2 border-sky-400" 
                     />

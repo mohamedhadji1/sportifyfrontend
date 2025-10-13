@@ -3,8 +3,7 @@
  */
 
 // Base URLs for different services
-// Production auth service URL (replaces localhost:5000)
-const AUTH_SERVICE_URL = 'https://sportifyauth.onrender.com';
+const AUTH_SERVICE_URL = 'http://localhost:5000';
 const TEAM_SERVICE_URL = 'http://localhost:5004';
 
 /**

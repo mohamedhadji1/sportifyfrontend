@@ -189,7 +189,7 @@ export const PersonalInformation = ({ user, onUserUpdate }) => {  const [formDat
       }
 
       const response = await axios.put(
-  "https://sportifyauth.onrender.com/api/auth/profile",
+        "http://localhost:5000/api/auth/profile",
         updateData,
         {
           headers: {

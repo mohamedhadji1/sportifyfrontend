@@ -10,7 +10,7 @@ import { AuthAlert } from "./shared/AuthAlert"
 import { TextInput } from "../../../shared/ui/components/TextInput"
 import { Card } from "../../../shared/ui/components/Card"
 
-const API_BASE_URL = "http://localhost:5000/api/2fa"
+const API_BASE_URL = "https://sportifyauth.onrender.com/api/2fa"
 
 const TwoFactorAuth = ({ user, onSetupComplete, initiateSetup }) => {
   const [secret, setSecret] = useState("")

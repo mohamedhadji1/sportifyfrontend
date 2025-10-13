@@ -255,7 +255,7 @@ const CourtRating = ({ courtId, court }) => {
                 <div className="flex items-center space-x-3">                  <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center overflow-hidden">
                     {rating.userId.profileImage ? (
                       <img
-                        src={`http://localhost:5000${rating.userId.profileImage}`}
+                        src={`https://sportifyauth.onrender.com${rating.userId.profileImage}`}
                         alt={rating.userId.fullName || 'User'}
                         className="w-10 h-10 rounded-full object-cover"
                         onError={(e) => {

@@ -25,7 +25,7 @@ const MyTeamSimple = () => {
     }
 
     try {
-      const res = await axios.get('http://localhost:5000/api/teams/my-team', {
+      const res = await axios.get('https://sportifyauth.onrender.com/api/teams/my-team', {
         headers: { 'x-auth-token': token }
       });
       
@@ -62,7 +62,7 @@ const MyTeamSimple = () => {
   const handleLeaveTeam = async () => {
     const token = localStorage.getItem('token');
     try {
-      await axios.post('http://localhost:5000/api/teams/leave', {}, {
+      await axios.post('https://sportifyauth.onrender.com/api/teams/leave', {}, {
         headers: { 'x-auth-token': token }
       });
       setTeam(null);

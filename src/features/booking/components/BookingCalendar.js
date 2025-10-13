@@ -457,7 +457,7 @@ const BookingCalendar = ({ court, isOpen, onClose, onBookingComplete }) => {
       // Test auth service verify endpoint
       console.log('🔍 Testing auth service verification...');
       try {
-        const authTestResponse = await fetch('http://localhost:5000/api/auth/verify', {
+        const authTestResponse = await fetch('https://sportifyauth.onrender.com/api/auth/verify', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

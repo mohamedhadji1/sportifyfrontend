@@ -244,7 +244,7 @@ const MyTeam = () => {
       }
       
       // For the auth service (simple team creation)
-      const res = await axios.post('http://localhost:5000/api/teams/create', formData, {
+      const res = await axios.post('https://sportifyauth.onrender.com/api/teams/create', formData, {
         headers: { 
           'x-auth-token': token,
           'Content-Type': 'multipart/form-data'
@@ -401,7 +401,7 @@ const MyTeam = () => {
                 {team.members.map((member) => (
                   <div key={member._id} className="bg-neutral-700 rounded-lg p-4 flex flex-col items-center text-center shadow-md hover:shadow-sky-500/20 transition-shadow duration-300">
                     <img 
-                      src={member.profileImage ? `http://localhost:5000${member.profileImage}` : 'https://i.pravatar.cc/150?u=a042581f4e29026704d'} 
+                      src={member.profileImage ? `https://sportifyauth.onrender.com${member.profileImage}` : 'https://i.pravatar.cc/150?u=a042581f4e29026704d'} 
                       alt={member.fullName} 
                       className="w-24 h-24 rounded-full mb-4 border-2 border-sky-400" 
                     />

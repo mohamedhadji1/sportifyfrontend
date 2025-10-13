@@ -51,7 +51,7 @@ export const PlayerSignUp = ({ onClose, onSwitchToPlayerSignIn }) => {
     setResendMessage("");
     try {
       const response = await fetch(
-        "http://localhost:5000/api/verification/resend-verification",
+        "https://sportifyauth.onrender.com/api/verification/resend-verification",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -117,7 +117,7 @@ export const PlayerSignUp = ({ onClose, onSwitchToPlayerSignIn }) => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/verification/player-signup",
+        "https://sportifyauth.onrender.com/api/verification/player-signup",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -186,7 +186,7 @@ export const PlayerSignUp = ({ onClose, onSwitchToPlayerSignIn }) => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/verification/verify-email",
+        "https://sportifyauth.onrender.com/api/verification/verify-email",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

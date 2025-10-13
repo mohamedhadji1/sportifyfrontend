@@ -121,7 +121,7 @@ export const ManagerSignUp = ({ onClose, onSwitchToManagerSignIn }) => {
         phoneNumber,
         attachment: attachment ? attachment.name : null
       })
-      const response = await fetch("http://localhost:5000/api/auth/manager/signup", {
+      const response = await fetch("https://sportifyauth.onrender.com/api/auth/manager/signup", {
         method: "POST",
         body: formData,
       })

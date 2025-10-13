@@ -49,7 +49,7 @@ export const ManagerSignIn = ({ onClose, onSwitchToPlayer, onSwitchToManagerSign
         role: "Manager",
         recaptchaToken 
       };
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("https://sportifyauth.onrender.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -61,7 +61,7 @@ const BrowseTeamsPage = () => {
       if (!token) return;
       
       // Use axios instead of fetch for consistency and correct port (5000) from Navbar.js
-      const response = await axios.get('http://localhost:5000/api/auth/profile', {
+  const response = await axios.get('https://sportifyauth.onrender.com/api/auth/profile', {
         headers: { 'x-auth-token': token }
       });
       

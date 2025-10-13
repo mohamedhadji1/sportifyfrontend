@@ -173,7 +173,7 @@ const ManagerManagement = () => {
       Cell: ({ value, row }) => (
         <div className="flex items-center justify-center">
           <Avatar 
-            src={value ? `http://localhost:5000${value}` : null}
+            src={value ? `https://sportifyauth.onrender.com${value}` : null}
             alt={row.name}
             size="sm"
             className="border border-slate-600"
@@ -264,7 +264,7 @@ const ManagerManagement = () => {
         // Extract filename from the full path
         const attachmentPath = value[0]; // Get first attachment
         const filename = attachmentPath.split(/[\\/]/).pop(); // Handle both / and \ separators
-        const attachmentUrl = `http://localhost:5000/uploads/${filename}`;
+        const attachmentUrl = `https://sportifyauth.onrender.com/uploads/${filename}`;
         return (
           <a
             href={attachmentUrl}

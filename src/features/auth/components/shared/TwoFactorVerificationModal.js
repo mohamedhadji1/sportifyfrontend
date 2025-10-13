@@ -32,7 +32,7 @@ export const TwoFactorVerificationModal = ({ email, tempToken, onVerifySuccess, 
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 10000)
 
-      const response = await fetch("http://localhost:5000/api/2fa/login-verify", {
+      const response = await fetch("https://sportifyauth.onrender.com/api/2fa/login-verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

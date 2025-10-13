@@ -444,7 +444,7 @@ const PlayerManagement = () => {
       Cell: ({ value, row }) => (
         <div className="flex items-center justify-center">
           <Avatar 
-            src={value ? `http://localhost:5000${value}` : null}
+            src={value ? `https://sportifyauth.onrender.com${value}` : null}
             alt={row.name}
             size="sm"
             className="border border-slate-600"

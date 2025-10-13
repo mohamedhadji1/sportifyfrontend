@@ -27,7 +27,7 @@ export const ManagerResetPassword = ({ token, resetToken, onClose, onSuccess, on
       }
 
       try {
-        const response = await fetch(`http://localhost:5000/api/auth/validate-reset-token/${currentToken}`, {
+        const response = await fetch(`https://sportifyauth.onrender.com/api/auth/validate-reset-token/${currentToken}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export const ManagerResetPassword = ({ token, resetToken, onClose, onSuccess, on
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/reset-password/${currentToken}`, {
+      const response = await fetch(`https://sportifyauth.onrender.com/api/auth/reset-password/${currentToken}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

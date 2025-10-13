@@ -37,7 +37,7 @@ export const ProfileHeader = ({ user }) => {
           <div className="flex items-center gap-6 animate-fadeInUp">
             <div className="relative">
               <Avatar
-                src={user.profileImage ? `http://localhost:5000${user.profileImage}` : null}
+                src={user.profileImage ? `https://sportifyauth.onrender.com${user.profileImage}` : null}
                 alt={user.fullName}
                 size="xl"
                 className="ring-4 ring-white/20 shadow-2xl hover:ring-white/40 transition-all duration-500 hover:scale-105"

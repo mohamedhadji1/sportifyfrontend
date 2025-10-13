@@ -176,7 +176,7 @@ const MyTeam = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const res = await axios.get('http://localhost:5000/api/teams/my-team', {
+  const res = await axios.get('https://sportifyauth.onrender.com/api/teams/my-team', {
           headers: { 'x-auth-token': token },
         });
         setTeam(res.data);
@@ -250,7 +250,7 @@ const MyTeam = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.post('http://localhost:5000/api/teams/join', { joinCode: joinTeamCode }, {
+  const res = await axios.post('https://sportifyauth.onrender.com/api/teams/join', { joinCode: joinTeamCode }, {
         headers: { 'x-auth-token': token },
       });
       setTeam(res.data);
@@ -320,7 +320,7 @@ const MyTeam = () => {
     const token = localStorage.getItem('token');
     
     try {
-      const response = await axios.get(`http://localhost:5000/api/auth/players`, {
+  const response = await axios.get(`https://sportifyauth.onrender.com/api/auth/players`, {
         headers: { 'x-auth-token': token },
         params: {
           limit: 20, // Load first 20 players initially
@@ -375,7 +375,7 @@ const MyTeam = () => {
     const token = localStorage.getItem('token');
     
     try {
-      const response = await axios.get(`http://localhost:5000/api/auth/players`, {
+  const response = await axios.get(`https://sportifyauth.onrender.com/api/auth/players`, {
         headers: { 'x-auth-token': token },
         params: {
           search: query,
@@ -712,7 +712,7 @@ const MyTeam = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {team.members.map((member) => (
                 <div key={member._id} className="bg-neutral-700 rounded-lg p-4 flex flex-col items-center text-center shadow-md hover:shadow-sky-500/20 transition-shadow duration-300">
-                  <img src={member.profileImage ? `http://localhost:5000${member.profileImage}` : 'https://i.pravatar.cc/150?u=a042581f4e29026704d'} alt={member.fullName} className="w-24 h-24 rounded-full mb-4 border-2 border-sky-400" />
+                  <img src={member.profileImage ? `https://sportifyauth.onrender.com${member.profileImage}` : 'https://i.pravatar.cc/150?u=a042581f4e29026704d'} alt={member.fullName} className="w-24 h-24 rounded-full mb-4 border-2 border-sky-400" />
                   <h3 className="text-xl font-semibold">{member.fullName}</h3>
                   <p className="text-neutral-400">{team.captain === member._id ? 'Captain' : 'Player'}</p>
                 </div>

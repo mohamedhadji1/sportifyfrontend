@@ -123,7 +123,7 @@ const EquipmentManagement = () => {
         const userIds = Array.from(new Set(normalizedProposals.map(p => p.normalizedProposer?.userId).filter(Boolean)));
         if (userIds.length > 0) {
           try {
-            const usersRes = await fetch('http://localhost:5000/api/auth/users/bulk', {
+            const usersRes = await fetch('https://sportifyauth.onrender.com/api/auth/users/bulk', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ userIds })

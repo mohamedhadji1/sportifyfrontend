@@ -214,7 +214,7 @@ const CourtManagementDashboard = () => {
       }
 
       // Get user info first
-      const userResponse = await fetch('http://localhost:5000/api/auth/profile', {
+      const userResponse = await fetch('https://sportifyauth.onrender.com/api/auth/profile', {
         headers: {
           'x-auth-token': token,
           'Content-Type': 'application/json',

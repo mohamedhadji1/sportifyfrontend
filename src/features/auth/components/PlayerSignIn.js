@@ -59,7 +59,7 @@ export const PlayerSignIn = ({ onClose, onSwitchToManager, onSwitchToPlayerSignU
         role: "Player",
         recaptchaToken 
       };
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("https://sportifyauth.onrender.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -134,7 +134,7 @@ export const PlayerSignIn = ({ onClose, onSwitchToManager, onSwitchToPlayerSignU
     setIsVerifying(true);
     setVerificationError("");
     try {
-      const response = await fetch("http://localhost:5000/api/verification/verify-email", {
+      const response = await fetch("https://sportifyauth.onrender.com/api/verification/verify-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email, code: verificationCode }),
@@ -158,7 +158,7 @@ export const PlayerSignIn = ({ onClose, onSwitchToManager, onSwitchToPlayerSignU
     setResendStatus({ message: "", type: "" });
     setVerificationError("");
     try {
-      const response = await fetch("http://localhost:5000/api/verification/resend-verification", {
+      const response = await fetch("https://sportifyauth.onrender.com/api/verification/resend-verification", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email }),

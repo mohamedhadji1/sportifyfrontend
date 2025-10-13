@@ -1,0 +1,876 @@
+/* Flash de début spectaculaire */
+.champion-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 215, 0, 0.6) 30%, transparent 70%);
+  opacity: 0;
+  animation: spectacular-flash 1.5s ease-out;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+@keyframes spectacular-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  30% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* Overlay principal avec amélioration */
+.champion-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.champion-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  opacity: 0.95;
+}
+
+/* Contenu principal */
+.champion-content {
+  position: relative;
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 2rem;
+  transform: scale(0.8) translateY(50px);
+  opacity: 0;
+  transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: blur(10px);
+  animation: champion-entrance-spectacular 3s ease-out forwards;
+}
+
+.champion-content.show {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  filter: blur(0px);
+}
+
+/* Animation d'entrée spectaculaire style Champions League */
+@keyframes champion-entrance-spectacular {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(200px) rotateX(90deg);
+    filter: blur(20px) brightness(0.3);
+  }
+  30% {
+    opacity: 0.7;
+    transform: scale(0.8) translateY(50px) rotateX(30deg);
+    filter: blur(5px) brightness(0.7);
+  }
+  70% {
+    opacity: 0.9;
+    transform: scale(1.1) translateY(-20px) rotateX(-10deg);
+    filter: blur(2px) brightness(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotateX(0deg);
+    filter: blur(0px) brightness(1);
+  }
+}
+
+/* Confettis SPECTACULAIRES Style Champions League */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.confetti {
+  position: absolute;
+  animation: confetti-fall-spectacular 4s infinite linear;
+}
+
+/* Confettis dorés */
+.confetti.gold {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+/* Confettis argentés */
+.confetti.silver {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(45deg, #C0C0C0, #808080);
+  box-shadow: 0 0 8px rgba(192, 192, 192, 0.8);
+}
+
+/* Confettis bleus Champions League */
+.confetti.blue {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(45deg, #0066CC, #003399);
+  box-shadow: 0 0 6px rgba(0, 102, 204, 0.8);
+}
+
+/* Confettis étoiles */
+.confetti.star {
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  color: #FFD700;
+  font-size: 16px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes confetti-fall-spectacular {
+  0% {
+    transform: translateY(-100vh) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-90vh) rotate(180deg) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(90vh) rotate(1080deg) scale(1);
+  }
+  100% {
+    transform: translateY(100vh) rotate(1260deg) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Trophée SPECTACULAIRE Champions League */
+.trophy-container {
+  position: relative;
+  margin-bottom: 3rem;
+  perspective: 1000px;
+}
+
+.trophy {
+  font-size: 12rem;
+  animation: trophy-bounce-spectacular 3s infinite ease-in-out;
+  filter: drop-shadow(0 0 30px #FFD700) drop-shadow(0 0 60px rgba(255, 215, 0, 0.5));
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  position: relative;
+  z-index: 10;
+}
+
+.trophy-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(255, 165, 0, 0.2) 50%, transparent 70%);
+  border-radius: 50%;
+  animation: glow-pulse-spectacular 2s infinite ease-in-out;
+  z-index: 5;
+}
+
+/* Rayons de lumière autour du trophée */
+.trophy-rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  z-index: 1;
+}
+
+.trophy-ray {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(255, 215, 0, 0.8), transparent);
+  transform-origin: bottom center;
+  animation: ray-rotate 6s linear infinite;
+}
+
+.trophy-ray:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+.trophy-ray:nth-child(2) { transform: translate(-50%, -100%) rotate(45deg); }
+.trophy-ray:nth-child(3) { transform: translate(-50%, -100%) rotate(90deg); }
+.trophy-ray:nth-child(4) { transform: translate(-50%, -100%) rotate(135deg); }
+.trophy-ray:nth-child(5) { transform: translate(-50%, -100%) rotate(180deg); }
+.trophy-ray:nth-child(6) { transform: translate(-50%, -100%) rotate(225deg); }
+.trophy-ray:nth-child(7) { transform: translate(-50%, -100%) rotate(270deg); }
+.trophy-ray:nth-child(8) { transform: translate(-50%, -100%) rotate(315deg); }
+
+@keyframes trophy-bounce-spectacular {
+  0%, 100% {
+    transform: translateY(0) rotateY(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-30px) rotateY(90deg) scale(1.1);
+  }
+  50% {
+    transform: translateY(-10px) rotateY(180deg) scale(1.05);
+  }
+  75% {
+    transform: translateY(-20px) rotateY(270deg) scale(1.1);
+  }
+}
+
+@keyframes glow-pulse-spectacular {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes ray-rotate {
+  0% {
+    transform: translate(-50%, -100%) rotate(0deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -100%) rotate(360deg);
+    opacity: 0.8;
+  }
+}
+
+/* Titre CHAMPION SPECTACULAIRE */
+.champion-title h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 1rem 0;
+  background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700, #FF6B35, #FFD700);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: champion-title-spectacular 4s ease-in-out infinite, title-glow-spectacular 2s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 165, 0, 0.6);
+  letter-spacing: 0.2em;
+  position: relative;
+  z-index: 20;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+}
+
+/* Effet de couronne autour du titre */
+.champion-title h1::before {
+  content: '👑';
+  position: absolute;
+  left: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  animation: crown-float 3s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+.champion-title h1::after {
+  content: '👑';
+  position: absolute;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  animation: crown-float 3s ease-in-out infinite reverse;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes champion-title-spectacular {
+  0%, 100% {
+    background-position: 0% 50%;
+    transform: scale(1) rotateY(0deg);
+  }
+  25% {
+    background-position: 100% 50%;
+    transform: scale(1.05) rotateY(5deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: scale(1.1) rotateY(0deg);
+  }
+  75% {
+    background-position: 0% 50%;
+    transform: scale(1.05) rotateY(-5deg);
+  }
+}
+
+@keyframes title-glow-spectacular {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 40px rgba(255, 215, 0, 1)) drop-shadow(0 0 60px rgba(255, 165, 0, 0.8));
+  }
+}
+
+@keyframes crown-float {
+  0%, 100% {
+    transform: translateY(-50%) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-70%) rotate(10deg) scale(1.2);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes text-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px #FFD700);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px #FFD700);
+  }
+}
+
+/* Informations de l'équipe */
+.team-info {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  animation: slide-up 1s ease-out 0.5s both;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Logo de l'équipe */
+.team-logo {
+  margin-bottom: 1.5rem;
+}
+
+.team-logo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #FFD700;
+  animation: logo-spin 3s infinite linear;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
+}
+
+.default-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #FFD700;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  animation: logo-spin 3s infinite linear;
+}
+
+@keyframes logo-spin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Nom de l'équipe */
+.team-name h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: #FFD700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: team-name-glow 2s infinite ease-in-out;
+}
+
+@keyframes team-name-glow {
+  0%, 100% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px #FFD700;
+  }
+  50% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px #FFD700, 0 0 30px #FFD700;
+  }
+}
+
+/* Message de félicitations */
+.congratulations {
+  margin-top: 1.5rem;
+}
+
+.congratulations p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  opacity: 0;
+  animation: fade-in-up 1s ease-out forwards;
+}
+
+.congratulations p:first-child {
+  animation-delay: 1s;
+}
+
+.congratulations p:last-child {
+  animation-delay: 1.3s;
+}
+
+@keyframes fade-in-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Podium */
+.podium-container {
+  margin-top: 2rem;
+  animation: slide-up 1s ease-out 2s both;
+}
+
+.podium-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #FFD700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.podium-position {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-width: 120px;
+}
+
+.podium-team {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.podium-logo {
+  margin-bottom: 0.5rem;
+}
+
+.podium-logo img,
+.default-podium-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid;
+}
+
+.podium-position.first .podium-logo img,
+.podium-position.first .default-podium-logo {
+  border-color: #FFD700;
+  animation: podium-glow-gold 2s infinite ease-in-out;
+}
+
+.podium-position.second .podium-logo img,
+.podium-position.second .default-podium-logo {
+  border-color: #C0C0C0;
+  animation: podium-glow-silver 2s infinite ease-in-out;
+}
+
+.podium-position.third .podium-logo img,
+.podium-position.third .default-podium-logo {
+  border-color: #CD7F32;
+  animation: podium-glow-bronze 2s infinite ease-in-out;
+}
+
+.default-podium-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.podium-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  max-width: 100px;
+  word-wrap: break-word;
+}
+
+.podium-medal {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  animation: medal-bounce 2s infinite ease-in-out;
+}
+
+.podium-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 8px 8px 0 0;
+  animation: step-rise 1.5s ease-out 2.5s both;
+}
+
+.first-step {
+  width: 100px;
+  height: 80px;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.second-step {
+  width: 100px;
+  height: 60px;
+  background: linear-gradient(135deg, #C0C0C0, #A0A0A0);
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+}
+
+.third-step {
+  width: 100px;
+  height: 40px;
+  background: linear-gradient(135deg, #CD7F32, #A0522D);
+  box-shadow: 0 0 10px rgba(205, 127, 50, 0.5);
+}
+
+@keyframes podium-glow-gold {
+  0%, 100% {
+    box-shadow: 0 0 10px #FFD700;
+  }
+  50% {
+    box-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700;
+  }
+}
+
+@keyframes podium-glow-silver {
+  0%, 100% {
+    box-shadow: 0 0 10px #C0C0C0;
+  }
+  50% {
+    box-shadow: 0 0 20px #C0C0C0, 0 0 30px #C0C0C0;
+  }
+}
+
+@keyframes podium-glow-bronze {
+  0%, 100% {
+    box-shadow: 0 0 10px #CD7F32;
+  }
+  50% {
+    box-shadow: 0 0 20px #CD7F32, 0 0 30px #CD7F32;
+  }
+}
+
+@keyframes medal-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.1);
+  }
+}
+
+@keyframes step-rise {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Feux d'artifice */
+.fireworks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.firework {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: firework-explosion 2s infinite;
+}
+
+.firework:nth-child(1) {
+  left: 20%;
+  top: 30%;
+  animation-delay: 0s;
+}
+
+.firework:nth-child(2) {
+  left: 80%;
+  top: 40%;
+  animation-delay: 0.7s;
+}
+
+.firework:nth-child(3) {
+  left: 50%;
+  top: 20%;
+  animation-delay: 1.4s;
+}
+
+@keyframes firework-explosion {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    background: #FFD700;
+    box-shadow: 0 0 0 0 #FFD700, 0 0 0 0 #FF6B6B, 0 0 0 0 #4ECDC4;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+    box-shadow: 
+      0 0 0 50px transparent,
+      0 0 0 100px transparent,
+      0 0 0 150px transparent;
+  }
+}
+
+/* Bouton fermer */
+.close-animation {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.close-animation:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .champion-content {
+    padding: 1rem;
+    max-width: 90%;
+  }
+  
+  .champion-title h1 {
+    font-size: 2.5rem;
+  }
+  
+  .team-name h2 {
+    font-size: 2rem;
+  }
+  
+  .trophy {
+    font-size: 5rem;
+  }
+  
+  .team-logo img,
+  .default-logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .congratulations p {
+    font-size: 1rem;
+  }
+  
+  /* Podium responsive */
+  .podium {
+    gap: 0.5rem;
+  }
+  
+  .podium-position {
+    min-width: 80px;
+  }
+  
+  .podium-logo img,
+  .default-podium-logo {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .podium-name {
+    font-size: 0.7rem;
+    max-width: 70px;
+  }
+  
+  .podium-medal {
+    font-size: 1.5rem;
+  }
+  
+  .podium-title {
+    font-size: 1.5rem;
+  }
+  
+  .first-step {
+    width: 70px;
+    height: 60px;
+    font-size: 1.2rem;
+  }
+  
+  .second-step {
+    width: 70px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+  
+  .third-step {
+    width: 70px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Styles pour les montants des prix */
+.prize-amount {
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  margin-top: 4px;
+  color: #ffffff;
+}
+
+.breakdown-amount {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  margin: 2px 0;
+}
+
+.breakdown-total {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Système de particules pour le podium */
+.podium-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.podium-particle {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.8;
+  animation: particle-float 6s infinite linear;
+}
+
+.podium-particle.gold {
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.podium-particle.silver {
+  color: #C0C0C0;
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
+}
+
+.podium-particle.bronze {
+  color: #CD7F32;
+  text-shadow: 0 0 10px rgba(205, 127, 50, 0.8);
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(90vh) rotate(180deg) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(-10vh) rotate(1080deg) scale(1);
+  }
+  100% {
+    transform: translateY(-20vh) rotate(1260deg) scale(0);
+    opacity: 0;
+  }
+}

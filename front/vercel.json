@@ -1,6 +1,10 @@
 {
   "version": 2,
   "name": "sportifyyyy-front",
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "installCommand": "npm install",
+  "framework": "create-react-app",
   "builds": [
     {
       "src": "package.json",

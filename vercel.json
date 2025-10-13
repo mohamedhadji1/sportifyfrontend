@@ -1,4 +1,7 @@
 {
+  
+  "rootDirectory": "front",
+  
   "version": 2,
   "name": "sportifyyyy-front",
   "buildCommand": "npm run build",
@@ -130,4 +133,5 @@
       "CI": "false"
     }
   }
+  
 }

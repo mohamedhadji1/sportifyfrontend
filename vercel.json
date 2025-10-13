@@ -4,16 +4,16 @@
   
   "version": 2,
   "name": "sportifyyyy-front",
-  "buildCommand": "npm run build",
-  "outputDirectory": "build",
-  "installCommand": "npm install",
+  "buildCommand": "cd front ; npm run build",
+  "outputDirectory": "front/build",
+  "installCommand": "cd front ; npm install",
   "framework": "create-react-app",
   "builds": [
     {
-      "src": "package.json",
+      "src": "front/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "build"
+        "distDir": "front/build"
       }
     }
   ],

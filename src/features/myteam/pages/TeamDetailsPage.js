@@ -212,17 +212,7 @@ const TeamDetailsPage = () => {
   };
 
   const isTeamCaptain = () => {
-    console.log('🔍 Team Management - Full Team Object:', team);
-    console.log('🔍 Team has isCaptain property?', team && team.hasOwnProperty('isCaptain'));
-    console.log('🔍 Team.isCaptain value:', team?.isCaptain);
-    
-    // Use backend's authoritative captain status if available
-    if (team && team.hasOwnProperty('isCaptain')) {
-      console.log('✅ Using backend isCaptain flag:', team.isCaptain);
-      return team.isCaptain;
-    }
-    
-    // Check captain status the same way as BookingCalendar
+    // ALWAYS check captain status by comparing IDs (backend isCaptain is unreliable)
     const storedUser = localStorage.getItem('user');
     if (!storedUser || !team || !team.captain) {
       console.log('❌ Missing required data for captain check');
@@ -238,7 +228,9 @@ const TeamDetailsPage = () => {
       teamCaptainType: typeof team.captain,
       currentUserId: currentUserId,
       currentUserIdType: typeof currentUserId,
-      match: match
+      backendIsCaptain: team?.isCaptain,
+      actualMatch: match,
+      usingMatch: match
     });
     
     return match;

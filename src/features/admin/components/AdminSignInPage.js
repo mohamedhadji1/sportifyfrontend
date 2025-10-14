@@ -3,10 +3,17 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ReCaptchaV3 from '../../../shared/ui/components/ReCaptchaV3';
 
-// Prefer explicit auth service URL like the rest of the app. This mirrors
-// other components that use REACT_APP_API_URL or REACT_APP_AUTH_SERVICE_URL
-// and falls back to the public auth host.
-const AUTH_API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api';
+// Prefer explicit auth service URL. Use REACT_APP_AUTH_SERVICE_URL first (explicit)
+// and only accept REACT_APP_API_URL when it is an absolute URL (not a relative path
+// like '/api' which would make the browser send requests to the frontend origin
+// and produce 405s). Fall back to the public auth host.
+const _authUrlFromApi = process.env.REACT_APP_API_URL || '';
+const _authUrlFromAuth = process.env.REACT_APP_AUTH_SERVICE_URL || '';
+const AUTH_API = (_authUrlFromAuth && !_authUrlFromAuth.startsWith('/'))
+  ? _authUrlFromAuth
+  : (_authUrlFromApi && !_authUrlFromApi.startsWith('/'))
+    ? _authUrlFromApi
+    : 'https://sportifyauth.onrender.com/api';
 
 const AdminSignInPage = () => {
   const [email, setEmail] = useState('');

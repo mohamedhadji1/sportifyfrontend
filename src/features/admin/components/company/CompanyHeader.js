@@ -10,7 +10,7 @@ const CompanyHeader = ({ company, editing, onEdit, onSave, onCancel, onFileSelec
           {company.logo && company.logo !== '/assets/logos/default-company-logo.svg' ? (
             (() => {
               const logoUrl = company.logo.startsWith('/uploads/')
-                ? `http://localhost:5001${company.logo}?t=${Date.now()}`
+                ? `https://sportify-company.onrender.com${company.logo}?t=${Date.now()}`
                 : company.logo;
               console.log('Company logo src:', logoUrl);
               return (

@@ -81,7 +81,7 @@ const CompanyManagement = () => {
   const fetchFilterOptions = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5001/api/companies/filter-options', {
+      const response = await axios.get('https://sportify-company.onrender.com/api/companies/filter-options', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -122,7 +122,7 @@ const CompanyManagement = () => {
       let params = {};
       
       if (user.role === 'Admin') {
-        apiUrl = 'http://localhost:5001/api/companies/';
+        apiUrl = 'https://sportify-company.onrender.com/api/companies/';
         // Build query parameters using ref to avoid dependency
         Object.entries(searchParamsRef.current).forEach(([key, value]) => {
           if (value && value !== 'all') {
@@ -130,7 +130,7 @@ const CompanyManagement = () => {
           }
         });
       } else {
-        apiUrl = `http://localhost:5001/api/companies/owner/${user.id}`;
+        apiUrl = `https://sportify-company.onrender.com/api/companies/owner/${user.id}`;
       }
 
       console.log('Fetching companies with params:', params);
@@ -251,7 +251,7 @@ const CompanyManagement = () => {
   const handleApproveCompany = async (companyId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.patch(`http://localhost:5001/api/companies/${companyId}/verify`, {}, {
+      const response = await axios.patch(`https://sportify-company.onrender.com/api/companies/${companyId}/verify`, {}, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.data && response.data.company) {
@@ -271,7 +271,7 @@ const CompanyManagement = () => {
   const handleSuspendCompany = async (companyId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.patch(`http://localhost:5001/api/companies/${companyId}/suspend`, {}, {
+      const response = await axios.patch(`https://sportify-company.onrender.com/api/companies/${companyId}/suspend`, {}, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.data && response.data.company) {
@@ -291,7 +291,7 @@ const CompanyManagement = () => {
     // This is specifically for the Admin view, to avoid conflict with manager's handleDeleteCompany
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5001/api/companies/${companyId}`, {
+      await axios.delete(`https://sportify-company.onrender.com/api/companies/${companyId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setCompanies(prevCompanies => prevCompanies.filter(c => c._id !== companyId));
@@ -330,7 +330,7 @@ const CompanyManagement = () => {
       const { ownerId, ...safeEditForm } = editForm;
       const payload = { ...safeEditForm, address: completeAddress };
       
-      const response = await axios.put(`http://localhost:5001/api/companies/${currentCompany._id}`, payload, {
+      const response = await axios.put(`https://sportify-company.onrender.com/api/companies/${currentCompany._id}`, payload, {
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
       });
       
@@ -377,7 +377,7 @@ const CompanyManagement = () => {
       }
 
 
-      const response = await axios.post('http://localhost:5001/api/companies', payload, {
+      const response = await axios.post('https://sportify-company.onrender.com/api/companies', payload, {
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
       });
 
@@ -429,7 +429,7 @@ const CompanyManagement = () => {
     }
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5001/api/companies/${companyId}`, {
+      await axios.delete(`https://sportify-company.onrender.com/api/companies/${companyId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -600,7 +600,7 @@ const CompanyManagement = () => {
       formData.append('logo', selectedFile);
 
       const response = await axios.post(
-        `http://localhost:5001/api/companies/${companyIdToUploadTo}/upload-logo`,
+        `https://sportify-company.onrender.com/api/companies/${companyIdToUploadTo}/upload-logo`,
         formData,
         { headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } }
       );

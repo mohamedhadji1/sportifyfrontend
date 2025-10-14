@@ -5,7 +5,7 @@ import { getImageUrl } from '../../../shared/utils/imageUtils';
 import { useToast, ToastContainer } from '../../../shared/ui/components/Toast';
 
 const TOURNAMENT_API = process.env.REACT_APP_TOURNAMENT_SERVICE_URL || 'http://localhost:5006/api/tournaments';
-const COMPANY_API = (process.env.REACT_APP_COMPANY_SERVICE_URL || 'http://localhost:5001').replace(/\/$/, '');
+const COMPANY_API = (process.env.REACT_APP_COMPANY_SERVICE_URL || 'https://sportify-company.onrender.com').replace(/\/$/, '');
 
 // Fetch manager's companies
 async function fetchMyCompanies() {

@@ -10,7 +10,7 @@ export const usePlayerSearch = () => {
     setIsSearching(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5001/api/players', {
+      const response = await axios.get('https://sportify-company.onrender.com/api/players', {
         headers: { 'x-auth-token': token },
         params: { limit: 20 }
       });
@@ -50,7 +50,7 @@ export const usePlayerSearch = () => {
     setIsSearching(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5001/api/players/search', {
+      const response = await axios.get('https://sportify-company.onrender.com/api/players/search', {
         headers: { 'x-auth-token': token },
         params: { q: query }
       });

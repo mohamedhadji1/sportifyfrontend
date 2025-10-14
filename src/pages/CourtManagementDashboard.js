@@ -227,7 +227,7 @@ const CourtManagementDashboard = () => {
         
         if (userId) {
           // Get all companies owned by this manager
-          const companiesResponse = await fetch(`http://localhost:5001/api/companies/owner/${userId}`, {
+          const companiesResponse = await fetch(`https://sportify-company.onrender.com/api/companies/owner/${userId}`, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json',

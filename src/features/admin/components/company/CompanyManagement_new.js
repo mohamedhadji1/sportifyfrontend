@@ -46,9 +46,9 @@ const CompanyManagement = () => {
       }
 
       const token = localStorage.getItem('token');
-      console.log('Making request to:', `http://localhost:5001/api/companies/owner/${user.id}`);
+      console.log('Making request to:', `https://sportify-company.onrender.com/api/companies/owner/${user.id}`);
       
-      const response = await axios.get(`http://localhost:5001/api/companies/owner/${user.id}`, {
+      const response = await axios.get(`https://sportify-company.onrender.com/api/companies/owner/${user.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -97,7 +97,7 @@ const CompanyManagement = () => {
         address: completeAddress
       };
       
-      const response = await axios.put(`http://localhost:5001/api/companies/${company._id}`, payload, {
+      const response = await axios.put(`https://sportify-company.onrender.com/api/companies/${company._id}`, payload, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -185,7 +185,7 @@ const CompanyManagement = () => {
       formData.append('logo', selectedFile);
 
       const response = await axios.post(
-        `http://localhost:5001/api/companies/${company._id}/upload-logo`,
+        `https://sportify-company.onrender.com/api/companies/${company._id}/upload-logo`,
         formData,
         {
           headers: {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const COMPANY_API_URL = 'http://localhost:5001/api/companies';
+const COMPANY_API_URL = 'https://sportify-company.onrender.com/api/companies';
 
 // Simple in-memory cache for companies by manager
 const companiesCache = {};

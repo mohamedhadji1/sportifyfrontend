@@ -29,7 +29,7 @@ export const ManagerSignUp = ({ onClose, onSwitchToManagerSignIn }) => {
     const fetchCompanies = async () => {
       setLoadingCompanies(true)
       try {
-        const response = await fetch("http://localhost:5001/api/companies/list/signup")
+        const response = await fetch("https://sportify-company.onrender.com/api/companies/list/signup")
         if (response.ok) {
           const companiesData = await response.json()
           setCompanies(companiesData)

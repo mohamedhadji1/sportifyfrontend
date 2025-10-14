@@ -18,7 +18,7 @@ const TournamentManager = () => {
   const fetchAvailableTeams = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5001/api/teams', {
+      const response = await fetch('https://sportify-company.onrender.com/api/teams', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

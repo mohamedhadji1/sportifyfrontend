@@ -183,12 +183,14 @@ const TeamDetailsPage = () => {
   const isTeamCaptain = () => {
     // Use backend's authoritative captain status if available
     if (team && team.hasOwnProperty('isCaptain')) {
+      console.log('[Captain Check] Using backend isCaptain:', team.isCaptain);
       return team.isCaptain;
     }
     
     // If backend didn't provide captain status, fall back to local check
     const currentUser = getCurrentUser();
     if (!currentUser || !team) {
+      console.log('[Captain Check] Missing user or team data');
       return false;
     }
     
@@ -211,6 +213,12 @@ const TeamDetailsPage = () => {
     const normalizedCaptainId = captainId ? captainId.toString() : '';
     const normalizedUserId = userId ? userId.toString() : '';
     const isCaptain = normalizedCaptainId === normalizedUserId && normalizedCaptainId !== '';
+    
+    console.log('[Captain Check] Captain ID:', normalizedCaptainId);
+    console.log('[Captain Check] User ID:', normalizedUserId);
+    console.log('[Captain Check] Is Captain:', isCaptain);
+    console.log('[Captain Check] Current User:', currentUser);
+    console.log('[Captain Check] Team Captain:', team.captain);
     
     return isCaptain;
   };

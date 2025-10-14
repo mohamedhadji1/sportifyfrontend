@@ -50,7 +50,33 @@ const TeamDetailsPage = () => {
       setTeam(teamData);
       
       // Use membersInfo if available (enriched with user data), otherwise use members
-      const members = teamData.membersInfo || teamData.members || [];
+      let members = teamData.membersInfo || teamData.members || [];
+      
+      // If members don't have userInfo, try to fetch user details
+      if (members.length > 0 && !members[0].userInfo) {
+        console.log('Members missing userInfo, fetching user details...');
+        try {
+          // Fetch user details for each member
+          const memberPromises = members.map(async (member) => {
+            try {
+              const userResponse = await axios.get(
+                `https://sportifyauth.onrender.com/api/auth/users/${member.userId}`,
+                { headers: { 'x-auth-token': token } }
+              );
+              return {
+                ...member,
+                userInfo: userResponse.data.user || userResponse.data
+              };
+            } catch (err) {
+              console.error(`Failed to fetch user ${member.userId}:`, err);
+              return member; // Return original member if fetch fails
+            }
+          });
+          members = await Promise.all(memberPromises);
+        } catch (err) {
+          console.error('Error fetching user details:', err);
+        }
+      }
       
       // Remove duplicate members (captain might be listed twice)
       const uniqueMembers = members.filter((member, index, array) => 
@@ -65,15 +91,20 @@ const TeamDetailsPage = () => {
       }
       
       // Set up positions from team member positions
+      // Only load valid formation positions (not role text like 'Captain', 'No position')
+      const invalidPositions = ['Captain', 'Player', 'No position', 'captain', 'player', 'no position'];
       const savedPositions = {};
       uniqueMembers.forEach(member => {
         if (member.position && member.userId) {
-          savedPositions[member.userId] = {
-            position: member.position,
-            x: member.x || 0,
-            y: member.y || 0,
-            isStarter: member.isStarter !== false // Preserve bench state from backend
-          };
+          // Skip if position is a role text rather than actual formation position
+          if (!invalidPositions.includes(member.position)) {
+            savedPositions[member.userId] = {
+              position: member.position,
+              x: member.x || 0,
+              y: member.y || 0,
+              isStarter: member.isStarter !== false // Preserve bench state from backend
+            };
+          }
         }
       });
       

@@ -217,9 +217,23 @@ const TeamDetailsPage = () => {
       return team.isCaptain;
     }
     
-    // Simple fallback: assume captain for now (you are logged in viewing your team)
-    // The backend should ideally send isCaptain flag
-    return true;
+    // Check captain status the same way as BookingCalendar
+    const storedUser = localStorage.getItem('user');
+    if (!storedUser || !team || !team.captain) {
+      return false;
+    }
+    
+    const currentUserId = JSON.parse(storedUser)._id;
+    const match = team.captain && team.captain.toString() === (currentUserId ? currentUserId.toString() : '');
+    
+    console.log('🔍 Team Management - Captain Check:', {
+      teamName: team.name,
+      teamCaptain: team.captain,
+      currentUserId: currentUserId,
+      match: match
+    });
+    
+    return match;
   };
 
   // Temporary fix for corrupted user data - can be removed later

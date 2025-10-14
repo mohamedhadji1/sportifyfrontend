@@ -5,7 +5,7 @@ import { ComplaintFlagButton } from '../../complaints';
 // Example of how to integrate ComplaintFlagButton into existing court cards
 const EnhancedCourtCard = ({ court, onClick }) => {
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return '/placeholder.jpg';
+    if (!imagePath) return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23e5e7eb" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%239ca3af" font-family="sans-serif" font-size="18"%3ENo Image%3C/text%3E%3C/svg%3E';
     if (imagePath.startsWith('/uploads')) {
       return `https://sportify-courts.onrender.com${imagePath}`;
     }
@@ -31,7 +31,7 @@ const EnhancedCourtCard = ({ court, onClick }) => {
           alt={court.name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
           onError={(e) => {
-            e.target.src = '/placeholder.jpg';
+            e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23e5e7eb" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%239ca3af" font-family="sans-serif" font-size="18"%3EImage Not Found%3C/text%3E%3C/svg%3E';
           }}
         />
         

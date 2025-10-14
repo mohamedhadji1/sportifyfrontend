@@ -36,17 +36,19 @@ export const getImageUrl = (imageUrl, type = 'team') => {
       imageUrl === '/uploads/default/team-default.jpg' ||
       imageUrl.trim() === '') {
     //
-    // Return default images based on type
+    // Return default images based on type - use data URLs to avoid 404 requests
     switch (type) {
       case 'team':
         return '/sae.jpg'; // Frontend default team image
-    case 'user':
-      // Use a frontend-hosted icon that exists in the public assets
-      return '/assets/icons/player-icon.png';
+      case 'user':
+        // Use a frontend-hosted icon that exists in the public assets
+        return '/assets/icons/player-icon.png';
       case 'court':
-        return '/placeholder.jpg';
+        // Return SVG data URL instead of missing placeholder.jpg
+        return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="24" dy="10.5" font-weight="400" x="50%25" y="50%25" text-anchor="middle"%3ECourt Image%3C/text%3E%3C/svg%3E';
       default:
-        return '/placeholder.svg';
+        // Return generic SVG data URL
+        return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="24" dy="10.5" font-weight="400" x="50%25" y="50%25" text-anchor="middle"%3ENo Image%3C/text%3E%3C/svg%3E';
     }
   }
   
@@ -208,10 +210,12 @@ export const handleImageError = (event, type = 'team', entityName = '') => {
       element.src = '/assets/icons/player-icon.png';
       break;
     case 'court':
-      element.src = '/placeholder.jpg';
+      // Use SVG data URL instead of placeholder.jpg
+      element.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="24" dy="10.5" font-weight="400" x="50%25" y="50%25" text-anchor="middle"%3ECourt Image%3C/text%3E%3C/svg%3E';
       break;
     default:
-      element.src = '/placeholder.svg';
+      // Use generic SVG data URL
+      element.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23374151" width="400" height="300"/%3E%3Ctext fill="%239CA3AF" font-family="sans-serif" font-size="24" dy="10.5" font-weight="400" x="50%25" y="50%25" text-anchor="middle"%3ENo Image%3C/text%3E%3C/svg%3E';
   }
   
   // Prevent infinite error loop

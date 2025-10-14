@@ -188,59 +188,36 @@ const TeamDetailsPage = () => {
     
     // If backend didn't provide captain status, fall back to local check
     const currentUser = getCurrentUser();
-    if (!currentUser || !team) {
+    if (!currentUser || !team || !team.captain) {
       return false;
     }
     
-    // Extract captain ID - handle both object and string formats
-    const captainId = typeof team.captain === 'object' ? team.captain._id : team.captain;
+    // Get current user email (most reliable identifier)
+    const currentUserEmail = currentUser.email?.toLowerCase();
     
-    // Extract user ID - try multiple possible fields
-    let userId = currentUser._id || currentUser.id;
-    
-    // If userId is still undefined, try to get it from the team members list
-    // by matching the current user's email with team members
-    if (!userId && currentUser.email) {
-      const matchingMember = teamMembers.find(member => 
-        member.userInfo?.email === currentUser.email ||
-        member.email === currentUser.email
-      );
-      if (matchingMember) {
-        userId = matchingMember.userId;
-      }
+    if (!currentUserEmail) {
+      return false;
     }
     
-    // Convert both to strings for comparison
-    const captainIdStr = captainId ? String(captainId).trim() : '';
-    const userIdStr = userId ? String(userId).trim() : '';
-    
-    // Check if IDs match
-    if (captainIdStr && userIdStr && captainIdStr === userIdStr) {
-      return true;
-    }
-    
-    // Additional check: if current user email matches captain email
-    if (currentUser.email && typeof team.captain === 'object' && team.captain.email) {
-      if (currentUser.email.toLowerCase() === team.captain.email.toLowerCase()) {
-        return true;
-      }
-    }
-    
-    // Final fallback: check if user is in members list as captain
-    const memberEntry = teamMembers.find(member => {
-      const memberUserId = member.userId || member._id;
-      const memberEmail = member.userInfo?.email || member.email;
-      return (
-        (memberUserId && userIdStr && String(memberUserId) === userIdStr) ||
-        (memberEmail && currentUser.email && memberEmail.toLowerCase() === currentUser.email.toLowerCase())
-      );
+    // Find the current user in the team members list by email
+    const currentMember = teamMembers.find(member => {
+      const memberEmail = (member.userInfo?.email || member.email)?.toLowerCase();
+      return memberEmail === currentUserEmail;
     });
     
-    if (memberEntry && memberEntry.role === 'Captain') {
-      return true;
+    if (!currentMember) {
+      return false;
     }
     
-    return false;
+    // Extract captain ID from team.captain (could be string or object)
+    const captainId = typeof team.captain === 'object' ? team.captain._id : team.captain;
+    
+    // Check if the current member's userId matches the captain ID
+    // This uses the same logic as line 729 in the UI: member.userId === team.captain
+    const memberUserId = String(currentMember.userId || '').trim();
+    const captainIdStr = String(captainId || '').trim();
+    
+    return memberUserId === captainIdStr && memberUserId !== '';
   };
 
   // Temporary fix for corrupted user data - can be removed later

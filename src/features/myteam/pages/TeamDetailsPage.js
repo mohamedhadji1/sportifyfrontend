@@ -56,78 +56,7 @@ const TeamDetailsPage = () => {
       const uniqueMembers = members.filter((member, index, array) => 
         array.findIndex(m => m.userId === member.userId) === index
       );
-
-      // If members are not enriched with userInfo, try to fetch profiles from the auth service.
-      // NOTE: Do NOT put database connection strings (like MongoDB URIs) in the frontend.
-      // Instead, set REACT_APP_AUTH_API=https://your-auth-service in your environment and
-      // the frontend will attempt to fetch user profiles from that service.
-      // Try different env var names used across the repo for the auth service
-      const rawAuthApi = process.env.REACT_APP_AUTH_API || process.env.REACT_APP_AUTH_SERVICE_URL || process.env.REACT_APP_API_URL;
-
-      // Normalize and avoid duplicate '/api' when building endpoints
-      const normalizeAuthBase = (url) => {
-        if (!url) return null;
-        let u = url.replace(/\/$/, '');
-        return u;
-      };
-
-      const authApiBase = normalizeAuthBase(rawAuthApi);
-
-      if (authApiBase && uniqueMembers.length > 0) {
-        const membersMissingInfo = uniqueMembers.filter(m => !m.userInfo && m.userId);
-        if (membersMissingInfo.length > 0) {
-          try {
-            const userIds = membersMissingInfo.map(m => m.userId);
-
-            // Try a batch endpoint first (/api/users/batch) to reduce requests.
-            let profilesById = {};
-            try {
-              // If the configured authApiBase already includes '/api', don't add another '/api'
-              const batchUrl = authApiBase.match(/\/api(\/|$)/) ? `${authApiBase}/users/batch` : `${authApiBase}/api/users/batch`;
-              const batchResp = await axios.post(batchUrl, { userIds }, {
-                headers: { 'x-auth-token': token }
-              });
-              // Expecting an array of user profiles or an object keyed by id
-              const data = batchResp.data;
-              if (Array.isArray(data)) {
-                data.forEach(u => { if (u && (u._id || u.id)) profilesById[(u._id || u.id).toString()] = u; });
-              } else if (data && typeof data === 'object') {
-                Object.keys(data).forEach(k => { profilesById[k] = data[k]; });
-              }
-            } catch (batchErr) {
-              // Batch endpoint may not exist; fallback to individual requests
-              profilesById = {};
-              await Promise.all(userIds.map(async (id) => {
-                try {
-                  const userUrl = authApiBase.match(/\/api(\/|$)/) ? `${authApiBase}/users/${id}` : `${authApiBase}/api/users/${id}`;
-                  const r = await axios.get(userUrl, {
-                    headers: { 'x-auth-token': token }
-                  });
-                  const u = r.data.user || r.data;
-                  if (u) profilesById[id.toString()] = u;
-                } catch (e) {
-                  // ignore individual failures
-                }
-              }));
-            }
-
-            // Merge fetched profiles into members
-            uniqueMembers.forEach(m => {
-              const idKey = m.userId ? m.userId.toString() : (m._id ? m._id.toString() : null);
-              if (idKey && profilesById[idKey] && !m.userInfo) {
-                m.userInfo = profilesById[idKey];
-              }
-            });
-          } catch (e) {
-            // If fetching profiles fails, continue without them. This is non-fatal for UI.
-            console.warn('Could not fetch member profiles from auth API:', e?.message || e);
-          }
-        }
-      } else if (!authApiBase && uniqueMembers.some(m => !m.userInfo)) {
-        // If no auth API is configured, log a hint for developers (do not expose secrets)
-        console.info('Team members are missing userInfo. Set REACT_APP_AUTH_API to an auth service URL that exposes user profiles (do not use DB URIs in frontend).');
-      }
-
+      
       setTeamMembers(uniqueMembers);
       
       // Load saved formation and positions if any
@@ -244,6 +173,22 @@ const TeamDetailsPage = () => {
     try {
       const storedUser = localStorage.getItem('user');
       const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+
+      // If parsedUser is missing id fields, try to decode token stored in localStorage
+      if (parsedUser && (parsedUser.id || parsedUser._id)) return parsedUser;
+
+      const token = localStorage.getItem('token') || localStorage.getItem('authToken');
+      if (token && (!parsedUser || (!parsedUser.id && !parsedUser._id))) {
+        try {
+          // Basic JWT decode without verifying signature (frontend-only extraction)
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          const id = payload.id || payload._id || payload.userId;
+          return { ...(parsedUser || {}), id, _id: id, email: payload.email };
+        } catch (e) {
+          // ignore decoding errors
+        }
+      }
+
       return parsedUser;
     } catch (error) {
       console.error('Error parsing user data:', error);
@@ -262,9 +207,9 @@ const TeamDetailsPage = () => {
     if (!currentUser || !team) {
       return false;
     }
-    
-    const captainId = typeof team.captain === 'object' ? team.captain._id : team.captain;
-    let userId = currentUser.id || currentUser._id;
+    // Normalize captain id from several shapes
+    const captainId = (team.captain && (team.captain._id || team.captain.id || team.captain.userId)) || team.captain;
+    let userId = currentUser.id || currentUser._id || currentUser.userId;
     
     // If userId is still undefined, try to get it from the team members list
     // by matching the current user's email with team members
@@ -278,10 +223,21 @@ const TeamDetailsPage = () => {
       }
     }
     
+    // As last resort, try matching by email with the captain's userInfo
+    if (!userId && team.captain && typeof team.captain === 'object' && team.captain.email) {
+      if (team.captain.email === currentUser.email) {
+        userId = team.captain._id || team.captain.id || team.captain.userId;
+      }
+    }
+    
     // Ensure both are strings for comparison
     const normalizedCaptainId = captainId ? captainId.toString() : '';
     const normalizedUserId = userId ? userId.toString() : '';
     const isCaptain = normalizedCaptainId === normalizedUserId && normalizedCaptainId !== '';
+
+    if (!isCaptain && process.env.REACT_APP_DEBUG_TEAM_MEMBERS === 'true') {
+      console.debug('[TEAM DEBUG] captain check:', { captainId: normalizedCaptainId, userId: normalizedUserId, teamCaptainRaw: team.captain, currentUser });
+    }
     
     return isCaptain;
   };

@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import ReCaptchaV3 from '../../../shared/ui/components/ReCaptchaV3';
 
 // Prefer explicit auth service URL like the rest of the app. This mirrors
 // other components that use REACT_APP_API_URL or REACT_APP_AUTH_SERVICE_URL
 // and falls back to the public auth host.
 const AUTH_API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api';
-import ReCaptchaV3 from '../../../shared/ui/components/ReCaptchaV3';
 
 const AdminSignInPage = () => {
   const [email, setEmail] = useState('');

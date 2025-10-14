@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const COMPLAINT_SERVICE_URL = 'http://localhost:5002/api/complaints';
+const COMPLAINT_SERVICE_URL = 'https://sportify-complaint.onrender.com/api/complaints';
 
 export const useComplaints = () => {
   const [complaints, setComplaints] = useState([]);

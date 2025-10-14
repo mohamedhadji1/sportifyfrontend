@@ -242,7 +242,7 @@ const MyTeam = () => {
         teamData.playerPositions = playerPositions;
       }
       
-      const res = await axios.post('http://localhost:5003/api/teams', teamData, {
+      const res = await axios.post('https://sportify-courts.onrender.com/api/teams', teamData, {
         headers: { 
           'x-auth-token': token,
           'Content-Type': 'application/json'
@@ -268,7 +268,7 @@ const MyTeam = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.post('http://localhost:5003/api/teams/join', 
+      const res = await axios.post('https://sportify-courts.onrender.com/api/teams/join', 
         { joinCode: joinTeamCode },
         { headers: { 'x-auth-token': token } }
       );

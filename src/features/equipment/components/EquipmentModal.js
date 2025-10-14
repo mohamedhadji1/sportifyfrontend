@@ -62,7 +62,7 @@ const EquipmentModal = ({ equipment, editMode, onClose, onSuccess }) => {
     try {
       console.log('🏟️ Fetching courts...');
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5003/api/courts', {
+      const response = await axios.get('https://sportify-courts.onrender.com/api/courts', {
         headers: { 'x-auth-token': token }
       });
       console.log('✅ Courts response:', response.data);

@@ -1,7 +1,7 @@
 // Service for court API calls
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5003/api/courts';
+const API_URL = 'https://sportify-courts.onrender.com/api/courts';
 
 const getAuthHeaders = (isFormData = false) => {
   const token = localStorage.getItem('token');

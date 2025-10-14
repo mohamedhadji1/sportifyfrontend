@@ -71,7 +71,7 @@ export default function CourtForm({ company, court, onSubmit, onCancel, open }) 
     if (form.image instanceof File) {
       return URL.createObjectURL(form.image);
     } else if (form.image && form.image.startsWith('/uploads')) {
-      return `http://localhost:5003${form.image}`;
+      return `https://sportify-courts.onrender.com${form.image}`;
     } else if (form.image) {
       return form.image;
     }

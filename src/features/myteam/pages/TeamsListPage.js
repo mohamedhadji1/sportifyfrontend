@@ -81,7 +81,7 @@ const TeamsListPage = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      const response = await axios.get('http://localhost:5003/api/auth/me', {
+      const response = await axios.get('https://sportify-courts.onrender.com/api/auth/me', {
         headers: { 'x-auth-token': token }
       });
       setCurrentUser(response.data);
@@ -232,7 +232,7 @@ const TeamsListPage = () => {
         // If still no userId, try fetching from auth service
         if (!userId) {
           try {
-            const response = await axios.get('http://localhost:5003/api/auth/me', {
+            const response = await axios.get('https://sportify-courts.onrender.com/api/auth/me', {
               headers: { 'x-auth-token': token }
             });
             userId = response.data._id || response.data.id;

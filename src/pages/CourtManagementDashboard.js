@@ -246,7 +246,7 @@ const CourtManagementDashboard = () => {
             for (const company of companies) {
               // Get courts for this company
               try {
-                const courtsResponse = await fetch(`http://localhost:5003/api/courts/company/${company._id}`, {
+                const courtsResponse = await fetch(`https://sportify-courts.onrender.com/api/courts/company/${company._id}`, {
                   headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',

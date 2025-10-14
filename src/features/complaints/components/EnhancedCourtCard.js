@@ -7,7 +7,7 @@ const EnhancedCourtCard = ({ court, onClick }) => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '/placeholder.jpg';
     if (imagePath.startsWith('/uploads')) {
-      return `http://localhost:5003${imagePath}`;
+      return `https://sportify-courts.onrender.com${imagePath}`;
     }
     return imagePath;
   };

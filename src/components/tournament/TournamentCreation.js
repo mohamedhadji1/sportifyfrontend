@@ -26,9 +26,9 @@ const TournamentCreation = ({ availableTeams, onTournamentCreated, loading }) =>
   const fetchManagerCourts = useCallback(async () => {
     setLoadingCourts(true)
     try {
-      let courtsUrl = "http://localhost:5003/api/courts"
+      let courtsUrl = "https://sportify-courts.onrender.com/api/courts"
       if (user?.companyId) {
-        courtsUrl = `http://localhost:5003/api/courts/company/${user.companyId}`
+        courtsUrl = `https://sportify-courts.onrender.com/api/courts/company/${user.companyId}`
       }
       const response = await fetch(courtsUrl, {
         headers: {

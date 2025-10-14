@@ -18,7 +18,7 @@ export const PublicTeamsModal = ({ isOpen, onClose, currentUser }) => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5003/api/teams/user/${currentUser.id}/status`, {
+      const response = await fetch(`https://sportify-courts.onrender.com/api/teams/user/${currentUser.id}/status`, {
         headers: {
           'x-auth-token': token,
         },
@@ -42,7 +42,7 @@ export const PublicTeamsModal = ({ isOpen, onClose, currentUser }) => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5003/api/teams/public', {
+      const response = await fetch('https://sportify-courts.onrender.com/api/teams/public', {
         headers: {
           'x-auth-token': token,
         },
@@ -80,7 +80,7 @@ export const PublicTeamsModal = ({ isOpen, onClose, currentUser }) => {
       setJoinRequests(prev => ({ ...prev, [teamId]: 'pending' }));
       
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5003/api/teams/${teamId}/join-request`, {
+      const response = await fetch(`https://sportify-courts.onrender.com/api/teams/${teamId}/join-request`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

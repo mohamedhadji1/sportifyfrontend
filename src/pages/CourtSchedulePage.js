@@ -144,7 +144,7 @@ const CourtSchedulePage = () => {
                 <div className="relative w-full h-32 sm:h-40 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl mb-3 overflow-hidden group-hover:shadow-lg transition-shadow duration-300">
                   {court.image ? (
                     <img 
-                      src={court.image && court.image.startsWith('/uploads') ? `http://localhost:5003${court.image}` : court.image} 
+                      src={court.image && court.image.startsWith('/uploads') ? `https://sportify-courts.onrender.com${court.image}` : court.image} 
                       alt={court.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />

@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from '../../../shared/constants/config';
 import ReCaptchaV3 from '../../../shared/ui/components/ReCaptchaV3';
+
+const API_URL = "https://sportifyauth.onrender.com/api";
 
 const AdminSignInPage = () => {
   const [email, setEmail] = useState('');

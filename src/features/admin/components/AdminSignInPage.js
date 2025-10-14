@@ -7,13 +7,17 @@ import ReCaptchaV3 from '../../../shared/ui/components/ReCaptchaV3';
 // and only accept REACT_APP_API_URL when it is an absolute URL (not a relative path
 // like '/api' which would make the browser send requests to the frontend origin
 // and produce 405s). Fall back to the public auth host.
+// Allow a dedicated admin auth env var if you want different host for admin auth
+const _authUrlFromAdmin = process.env.REACT_APP_ADMIN_AUTH_SERVICE_URL || '';
 const _authUrlFromApi = process.env.REACT_APP_API_URL || '';
 const _authUrlFromAuth = process.env.REACT_APP_AUTH_SERVICE_URL || '';
-const AUTH_API = (_authUrlFromAuth && !_authUrlFromAuth.startsWith('/'))
-  ? _authUrlFromAuth
-  : (_authUrlFromApi && !_authUrlFromApi.startsWith('/'))
-    ? _authUrlFromApi
-    : 'https://sportifyauth.onrender.com/api';
+const AUTH_API = (_authUrlFromAdmin && !_authUrlFromAdmin.startsWith('/'))
+  ? _authUrlFromAdmin
+  : (_authUrlFromAuth && !_authUrlFromAuth.startsWith('/'))
+    ? _authUrlFromAuth
+    : (_authUrlFromApi && !_authUrlFromApi.startsWith('/'))
+      ? _authUrlFromApi
+      : 'https://sportifyauth.onrender.com/api';
 
 const AdminSignInPage = () => {
   const [email, setEmail] = useState('');

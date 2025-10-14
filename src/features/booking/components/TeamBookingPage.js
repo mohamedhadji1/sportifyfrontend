@@ -57,7 +57,7 @@ const TeamBookingPage = () => {
   const loadAvailableSlots = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.REACT_APP_BOOKING_API_URL || 'http://localhost:5005'}/api/team-bookings/available-slots/${selectedCourt}?date=${selectedDate}`, {
+      const response = await fetch(`${process.env.REACT_APP_BOOKING_API_URL || 'https://sportify-bookings.onrender.com'}/api/team-bookings/available-slots/${selectedCourt}?date=${selectedDate}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

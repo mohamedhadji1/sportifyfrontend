@@ -268,7 +268,7 @@ const CourtManagementDashboard = () => {
               
               // Get bookings for this company
               try {
-                const bookingsUrl = `http://localhost:5005/api/bookings/company/${company._id}?limit=1000`;
+                const bookingsUrl = `https://sportify-bookings.onrender.com/api/bookings/company/${company._id}?limit=1000`;
                 
                 const bookingsResponse = await fetch(bookingsUrl, {
                   headers: {

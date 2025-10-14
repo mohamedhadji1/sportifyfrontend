@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BOOKING_API_URL = process.env.REACT_APP_BOOKING_SERVICE_URL || 'http://localhost:5005/api';
+const BOOKING_API_URL = process.env.REACT_APP_BOOKING_SERVICE_URL || 'https://sportify-bookings.onrender.com/api';
 
 // Get auth token from localStorage
 const getAuthToken = () => {

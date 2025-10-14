@@ -58,7 +58,7 @@ const NotificationBell = ({ user }) => {
       // Fetch booking notifications (for managers) - with error handling
       if (user.role === 'Manager' || user.role === 'Admin') {
         try {
-          const bookingNotificationsResponse = await axios.get('http://localhost:5005/api/notifications', {
+          const bookingNotificationsResponse = await axios.get('https://sportify-bookings.onrender.com/api/notifications', {
             headers: { 
               'Authorization': `Bearer ${token}`
             }
@@ -238,7 +238,7 @@ const NotificationBell = ({ user }) => {
         return;
       }
       
-      const response = await axios.put(`http://localhost:5005/api/notifications/${notificationId}/read`, {}, {
+      const response = await axios.put(`https://sportify-bookings.onrender.com/api/notifications/${notificationId}/read`, {}, {
         headers: { 
           'Authorization': `Bearer ${token}`
         }

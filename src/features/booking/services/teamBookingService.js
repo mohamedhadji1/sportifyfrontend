@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_BOOKING_API_URL || 'http://localhost:5005';
+const API_BASE_URL = process.env.REACT_APP_BOOKING_API_URL || 'https://sportify-bookings.onrender.com';
 
 export const teamBookingService = {
   // Create a new team booking

@@ -86,7 +86,7 @@ const PaymentForm = ({
       
       console.log('💳 Payment data being sent:', paymentData);
 
-      const response = await fetch('http://localhost:5005/api/payments/create-payment-intent', {
+      const response = await fetch('https://sportify-bookings.onrender.com/api/payments/create-payment-intent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ const PaymentForm = ({
       // Confirm payment on backend
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5005/api/payments/confirm-payment', {
+        const response = await fetch('https://sportify-bookings.onrender.com/api/payments/confirm-payment', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

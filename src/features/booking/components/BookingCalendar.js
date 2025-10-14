@@ -260,7 +260,7 @@ const BookingCalendar = ({ court, isOpen, onClose, onBookingComplete }) => {
       const dateStr = selectedDate.toISOString().split('T')[0];
             
       // Fetch all slots with their booking status (available/booked) for visual indicators
-      const apiUrl = `${process.env.REACT_APP_BOOKING_SERVICE_URL || 'http://localhost:5005/api'}/bookings/slots-with-status/${court._id}/${dateStr}`;
+      const apiUrl = `${process.env.REACT_APP_BOOKING_SERVICE_URL || 'https://sportify-bookings.onrender.com/api'}/bookings/slots-with-status/${court._id}/${dateStr}`;
       console.log('📡 API URL:', apiUrl);
       
       const response = await fetch(apiUrl, {
@@ -478,7 +478,7 @@ const BookingCalendar = ({ court, isOpen, onClose, onBookingComplete }) => {
       // Test team-booking service auth endpoint
       console.log('🔍 Testing team-booking service authentication...');
       try {
-        const teamBookingAuthResponse = await fetch('http://localhost:5005/api/auth/verify', {
+        const teamBookingAuthResponse = await fetch('https://sportify-bookings.onrender.com/api/auth/verify', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

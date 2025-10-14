@@ -27,7 +27,7 @@ const BookingHistory = ({ user }) => {
         return;
       }
 
-      const response = await fetch('http://localhost:5005/api/team-bookings/history', {
+      const response = await fetch('https://sportify-bookings.onrender.com/api/team-bookings/history', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -58,7 +58,7 @@ const BookingHistory = ({ user }) => {
         return;
       }
 
-      const response = await fetch(`http://localhost:5005/api/team-bookings/${bookingId}/cancel`, {
+      const response = await fetch(`https://sportify-bookings.onrender.com/api/team-bookings/${bookingId}/cancel`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

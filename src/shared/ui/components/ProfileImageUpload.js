@@ -44,8 +44,8 @@ export const ProfileImageUpload = ({ currentImage, onImageUpdate, className = ""
       formData.append("profileImage", file)
 
       const token = localStorage.getItem("token")
-      const AUTH_API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
-      const response = await fetch(`${AUTH_API}/auth/upload-profile-image`, {
+      const AUTH_API = process.env.REACT_APP_API_URL || 'https://sportifyauth.onrender.com/api'
+      const response = await fetch(`${AUTH_API}/upload-profile-image`, {
         method: "POST",
         headers: {
           "x-auth-token": token,
@@ -119,8 +119,8 @@ export const ProfileImageUpload = ({ currentImage, onImageUpdate, className = ""
 
     try {
       const token = localStorage.getItem("token")
-      const AUTH_API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
-      const response = await fetch(`${AUTH_API}/auth/remove-profile-image`, {
+      const AUTH_API = process.env.REACT_APP_API_URL || 'https://sportifyauth.onrender.com/api'
+      const response = await fetch(`${AUTH_API}/remove-profile-image`, {
         method: "DELETE",
         headers: {
           "x-auth-token": token,

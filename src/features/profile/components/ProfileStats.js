@@ -52,7 +52,8 @@ export const ProfileStats = ({ user, detailed = false }) => {
       }
 
       console.log('Fetching stats for user ID:', userId);
-      const response = await axios.get(`http://localhost:5000/api/auth/user/${userId}/stats`);
+  const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+  const response = await axios.get(`${API}/auth/user/${userId}/stats`);
       
       console.log('📊 Stats API Response:', response.data);
       

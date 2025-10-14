@@ -27,7 +27,8 @@ const AccountSettings = () => {  const [user, setUser] = useState(null)
       // First try to fetch fresh user data from backend
       if (token) {
         try {
-          const userResponse = await axios.get("http://localhost:5000/api/auth/profile", {
+          const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+          const userResponse = await axios.get(`${API}/auth/profile`, {
             headers: { "x-auth-token": token },
           });
           

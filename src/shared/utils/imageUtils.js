@@ -3,7 +3,7 @@
  */
 
 // Base URLs for different services
-const AUTH_SERVICE_URL = 'http://localhost:5000';
+const AUTH_SERVICE_URL = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api';
 const TEAM_SERVICE_URL = 'http://localhost:5004';
 
 /**

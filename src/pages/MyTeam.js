@@ -176,7 +176,8 @@ const MyTeam = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const res = await axios.get('http://localhost:5000/api/teams/my-team', {
+        const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+        const res = await axios.get(`${API}/teams/my-team`, {
           headers: { 'x-auth-token': token },
         });
         setTeam(res.data);
@@ -250,7 +251,8 @@ const MyTeam = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.post('http://localhost:5000/api/teams/join', { joinCode: joinTeamCode }, {
+      const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+      const res = await axios.post(`${API}/teams/join`, { joinCode: joinTeamCode }, {
         headers: { 'x-auth-token': token },
       });
       setTeam(res.data);
@@ -320,7 +322,8 @@ const MyTeam = () => {
     const token = localStorage.getItem('token');
     
     try {
-      const response = await axios.get(`http://localhost:5000/api/auth/players`, {
+      const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+      const response = await axios.get(`${API}/auth/players`, {
         headers: { 'x-auth-token': token },
         params: {
           limit: 20, // Load first 20 players initially
@@ -375,7 +378,8 @@ const MyTeam = () => {
     const token = localStorage.getItem('token');
     
     try {
-      const response = await axios.get(`http://localhost:5000/api/auth/players`, {
+      const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+      const response = await axios.get(`${API}/auth/players`, {
         headers: { 'x-auth-token': token },
         params: {
           search: query,

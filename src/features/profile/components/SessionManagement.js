@@ -23,7 +23,8 @@ const SessionManagement = () => {
     try {
       const token = localStorage.getItem("token")
       if (token) {
-        const response = await axios.get("http://localhost:5000/api/auth/sessions", {
+        const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+        const response = await axios.get(`${API}/auth/sessions`, {
           headers: { "x-auth-token": token },
         })
         
@@ -42,7 +43,8 @@ const SessionManagement = () => {
   const terminateSession = async (sessionId) => {
     try {
       const token = localStorage.getItem("token")
-      const response = await axios.delete(`http://localhost:5000/api/auth/sessions/${sessionId}`, {
+      const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+      const response = await axios.delete(`${API}/auth/sessions/${sessionId}`, {
         headers: { "x-auth-token": token },
       })
       
@@ -64,7 +66,8 @@ const SessionManagement = () => {
   const terminateAllSessions = async () => {
     try {
       const token = localStorage.getItem("token")
-      const response = await axios.delete("http://localhost:5000/api/auth/sessions", {
+      const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+      const response = await axios.delete(`${API}/auth/sessions`, {
         headers: { "x-auth-token": token },
       })
       

@@ -9,7 +9,8 @@ export const useTeam = () => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const res = await axios.get('http://localhost:5000/api/teams/my-team', {
+        const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
+        const res = await axios.get(`${API}/teams/my-team`, {
           headers: { 'x-auth-token': token },
         });
         setTeam(res.data);

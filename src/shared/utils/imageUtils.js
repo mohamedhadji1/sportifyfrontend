@@ -3,8 +3,20 @@
  */
 
 // Base URLs for different services
-const AUTH_SERVICE_URL = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api';
-const TEAM_SERVICE_URL = 'http://localhost:5004';
+// For API calls the app uses REACT_APP_API_URL (which may include '/api').
+// Image uploads are served from the auth service origin (without '/api'), so compute
+// an AUTH_SERVICE_URL_ORIGIN by preferring REACT_APP_AUTH_SERVICE_URL or stripping
+// a trailing '/api' from REACT_APP_API_URL.
+const RAW_API_URL = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api';
+let AUTH_SERVICE_URL = RAW_API_URL;
+try {
+  // If RAW_API_URL ends with '/api' remove that segment for image URLs
+  AUTH_SERVICE_URL = RAW_API_URL.replace(/\/api\/?$/, '');
+} catch (e) {
+  AUTH_SERVICE_URL = 'https://sportifyauth.onrender.com';
+}
+
+const TEAM_SERVICE_URL = process.env.REACT_APP_TEAM_SERVICE_URL || 'http://localhost:5004';
 
 /**
  * Returns the appropriate image URL with fallback to default images
@@ -28,8 +40,9 @@ export const getImageUrl = (imageUrl, type = 'team') => {
     switch (type) {
       case 'team':
         return '/sae.jpg'; // Frontend default team image
-      case 'user':
-        return '/placeholder-user.jpg';
+    case 'user':
+      // Use a frontend-hosted icon that exists in the public assets
+      return '/assets/icons/player-icon.png';
       case 'court':
         return '/placeholder.jpg';
       default:
@@ -170,7 +183,29 @@ export const handleImageError = (event, type = 'team', entityName = '') => {
       element.src = '/sae.jpg';
       break;
     case 'user':
-      element.src = '/placeholder-user.jpg';
+      // If the original source contains an uploads filename, try the auth service absolute URL first
+      try {
+        const orig = originalSrc || '';
+        // Extract filename if present
+        const matches = orig.match(/profileImage-[^\/?#]+\.[a-zA-Z0-9]+/);
+        if (matches && matches[0]) {
+          const filename = matches[0];
+          element.src = `${AUTH_SERVICE_URL}/uploads/${filename}`;
+          // If this attempt fails, onerror will be cleared below so we need a small fallback after a short tick
+          const previousOnError = element.onerror;
+          // Temporarily attach a handler to try a final fallback asset if auth URL fails
+          element.onerror = function(evt) {
+            // Prevent looping
+            element.onerror = null;
+            element.src = '/assets/icons/player-icon.png';
+          };
+          return;
+        }
+      } catch (e) {
+        // fallthrough to local placeholder
+      }
+
+      element.src = '/assets/icons/player-icon.png';
       break;
     case 'court':
       element.src = '/placeholder.jpg';

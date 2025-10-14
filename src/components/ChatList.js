@@ -19,7 +19,7 @@ const ChatList = ({ user }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5004/api/teams/chats', {
+      const response = await axios.get('https://sportify-teams.onrender.com/api/teams/chats', {
         headers: { 'x-auth-token': token }
       });
       setChats(response.data.chats || []);

@@ -24,7 +24,7 @@ const MatchChat = ({ chatId, onClose }) => {
   const fetchChat = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5004/api/teams/chats/${chatId}`, {
+      const response = await axios.get(`https://sportify-teams.onrender.com/api/teams/chats/${chatId}`, {
         headers: { 'x-auth-token': token }
       });
       setChat(response.data.chat);
@@ -43,7 +43,7 @@ const MatchChat = ({ chatId, onClose }) => {
       setSending(true);
       const token = localStorage.getItem('token');
       
-      await axios.post(`http://localhost:5004/api/teams/chats/${chatId}/messages`, {
+      await axios.post(`https://sportify-teams.onrender.com/api/teams/chats/${chatId}/messages`, {
         message: newMessage
       }, {
         headers: { 'x-auth-token': token }

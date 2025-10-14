@@ -42,7 +42,7 @@ const TournamentWizard = () => {
       if (token) {
         headers['Authorization'] = `Bearer ${token}`;
       }
-      const response = await fetch('http://localhost:5004/api/teams?limit=100', {
+      const response = await fetch('https://sportify-teams.onrender.com/api/teams?limit=100', {
         headers
       });
       if (response.ok) {

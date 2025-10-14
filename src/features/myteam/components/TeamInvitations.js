@@ -12,7 +12,7 @@ const TeamInvitations = ({ user }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5004/api/teams/invitations/received', {
+      const response = await axios.get('https://sportify-teams.onrender.com/api/teams/invitations/received', {
         headers: { 'x-auth-token': token }
       });
       
@@ -40,7 +40,7 @@ const TeamInvitations = ({ user }) => {
       setProcessing(prev => ({ ...prev, [invitationId]: 'accepting' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/invitations/${invitationId}/accept`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/invitations/${invitationId}/accept`, {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -62,7 +62,7 @@ const TeamInvitations = ({ user }) => {
       setProcessing(prev => ({ ...prev, [invitationId]: 'declining' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/invitations/${invitationId}/decline`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/invitations/${invitationId}/decline`, {}, {
         headers: { 'x-auth-token': token }
       });
       

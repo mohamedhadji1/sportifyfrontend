@@ -65,7 +65,7 @@ const MatchEditor = ({
             console.log(`📡 Team ID: ${team.teamId}`);
             
             // Fetch the team document which contains members array
-            const url = `http://localhost:5004/api/teams/${team.teamId}`;
+            const url = `https://sportify-teams.onrender.com/api/teams/${team.teamId}`;
             console.log(`� URL: ${url}`);
             
             const response = await fetch(url, {

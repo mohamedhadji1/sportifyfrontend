@@ -17,7 +17,7 @@ export const usePlayerSearch = () => {
       if (sportFilter) params.sport = sportFilter;
       if (positionFilter) params.position = positionFilter;
       
-      const response = await axios.get('http://localhost:5004/api/teams/search/available-players', {
+      const response = await axios.get('https://sportify-teams.onrender.com/api/teams/search/available-players', {
         headers: { 
           'Authorization': `Bearer ${token}`
         },
@@ -97,7 +97,7 @@ export const usePlayerSearch = () => {
       if (sportFilter) params.sport = sportFilter;
       if (positionFilter) params.position = positionFilter;
       
-      const response = await axios.get('http://localhost:5004/api/teams/search/players', {
+      const response = await axios.get('https://sportify-teams.onrender.com/api/teams/search/players', {
         headers: { 
           'Authorization': `Bearer ${token}`
         },

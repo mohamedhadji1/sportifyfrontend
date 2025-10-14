@@ -117,7 +117,7 @@ export const ProfileStats = ({ user, detailed = false }) => {
       if (!userId) return;
 
       // Fetch user's teams from service-team (port 5004)
-      const teamsResponse = await axios.get(`http://localhost:5004/api/teams/user/${userId}`, {
+      const teamsResponse = await axios.get(`https://sportify-teams.onrender.com/api/teams/user/${userId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

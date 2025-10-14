@@ -16,7 +16,7 @@ try {
   AUTH_SERVICE_URL = 'https://sportifyauth.onrender.com';
 }
 
-const TEAM_SERVICE_URL = process.env.REACT_APP_TEAM_SERVICE_URL || 'http://localhost:5004';
+const TEAM_SERVICE_URL = process.env.REACT_APP_TEAM_SERVICE_URL || 'https://sportify-teams.onrender.com';
 
 /**
  * Returns the appropriate image URL with fallback to default images

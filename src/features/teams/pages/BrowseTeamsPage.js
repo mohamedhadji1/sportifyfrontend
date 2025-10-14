@@ -111,7 +111,7 @@ const BrowseTeamsPage = () => {
       }
       
       // Use axios for consistency
-      const response = await axios.get('http://localhost:5004/api/teams', {
+      const response = await axios.get('https://sportify-teams.onrender.com/api/teams', {
         headers: {
           'x-auth-token': token,
         },
@@ -135,7 +135,7 @@ const BrowseTeamsPage = () => {
       
       // Use the correct endpoint for user's sent join requests
       try {
-        const response = await axios.get('http://localhost:5004/api/teams/join-requests/sent', {
+        const response = await axios.get('https://sportify-teams.onrender.com/api/teams/join-requests/sent', {
           headers: { 'x-auth-token': token }
         });
         
@@ -200,7 +200,7 @@ const BrowseTeamsPage = () => {
       };
       
       // First check if user already has a team
-      const statusResponse = await axios.get(`http://localhost:5004/api/teams/user/me`, config);
+      const statusResponse = await axios.get(`https://sportify-teams.onrender.com/api/teams/user/me`, config);
       
       if (statusResponse.data && statusResponse.data.teams && statusResponse.data.teams.length > 0) {
         showError('You are already a member of a team');
@@ -209,7 +209,7 @@ const BrowseTeamsPage = () => {
       }
       
       // Send join request - fixed the endpoint from /request-join to /join
-      const response = await axios.post(`http://localhost:5004/api/teams/${teamId}/join`, {}, config);
+      const response = await axios.post(`https://sportify-teams.onrender.com/api/teams/${teamId}/join`, {}, config);
       
       // Add this team to the pending requests list
       const updatedPendingRequests = [...pendingJoinRequests, teamId];
@@ -269,7 +269,7 @@ const BrowseTeamsPage = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5004/api/teams/join-by-code', 
+        'https://sportify-teams.onrender.com/api/teams/join-by-code', 
         {
           secretCode: secretCode.trim().toUpperCase()
         },
@@ -319,17 +319,17 @@ const BrowseTeamsPage = () => {
       
       try {
         // First try: DELETE /teams/:id/join-request
-        await axios.delete(`http://localhost:5004/api/teams/${teamId}/join-request`, config);
+        await axios.delete(`https://sportify-teams.onrender.com/api/teams/${teamId}/join-request`, config);
         cancelSuccess = true;
       } catch (firstErr) {
         try {
           // Second try: DELETE /teams/:id/join
-          await axios.delete(`http://localhost:5004/api/teams/${teamId}/join`, config);
+          await axios.delete(`https://sportify-teams.onrender.com/api/teams/${teamId}/join`, config);
           cancelSuccess = true;
         } catch (secondErr) {
           try {
             // Third try: POST to handle-request with cancel action
-            await axios.post(`http://localhost:5004/api/teams/${teamId}/cancel-request`, {}, config);
+            await axios.post(`https://sportify-teams.onrender.com/api/teams/${teamId}/cancel-request`, {}, config);
             cancelSuccess = true;
           } catch (thirdErr) {
             // If all backend attempts fail, just remove from local state

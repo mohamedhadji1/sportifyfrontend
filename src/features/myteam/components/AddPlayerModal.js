@@ -40,7 +40,7 @@ const AddPlayerModal = ({
       params.append('limit', '20');
       
       const response = await axios.get(
-        `http://localhost:5004/api/teams/search/available-players?${params.toString()}`,
+        `https://sportify-teams.onrender.com/api/teams/search/available-players?${params.toString()}`,
         {
           headers: { 'x-auth-token': token }
         }
@@ -112,7 +112,7 @@ const AddPlayerModal = ({
       const playerIds = selectedPlayers.map(player => player._id);
       
       const response = await axios.post(
-        `http://localhost:5004/api/teams/${teamId}/invite`,
+        `https://sportify-teams.onrender.com/api/teams/${teamId}/invite`,
         { playerIds },
         {
           headers: { 'x-auth-token': token }

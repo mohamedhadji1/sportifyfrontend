@@ -22,7 +22,7 @@ const AddTeamsModal = ({ open, onClose, tournament, onTeamsAdded }) => {
       console.log('Fetching teams with token:', token ? 'Token exists' : 'No token');
       
       // Try with pagination parameters to get more teams
-      const response = await fetch('http://localhost:5004/api/teams?limit=50&page=1', {
+      const response = await fetch('https://sportify-teams.onrender.com/api/teams?limit=50&page=1', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

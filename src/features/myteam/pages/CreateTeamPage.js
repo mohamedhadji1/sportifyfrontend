@@ -79,7 +79,7 @@ const CreateTeamPage = () => {
       try {
         setCheckingTeams(true);
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5004/api/teams/user/me', {
+        const response = await axios.get('https://sportify-teams.onrender.com/api/teams/user/me', {
           headers: { 'x-auth-token': token }
         });
         setExistingTeams(response.data.teams || []);
@@ -223,7 +223,7 @@ const CreateTeamPage = () => {
       }
       
       // Use the service-team API endpoint (running on port 5004)
-      const res = await axios.post('http://localhost:5004/api/teams', formData, {
+      const res = await axios.post('https://sportify-teams.onrender.com/api/teams', formData, {
         headers: { 
           'x-auth-token': token,
           'Content-Type': 'multipart/form-data'

@@ -27,7 +27,7 @@ const TeamsPage = () => {
   const createTestOffer = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:5004/api/teams/debug/create-test-offer', {}, {
+      const response = await axios.post('https://sportify-teams.onrender.com/api/teams/debug/create-test-offer', {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -42,7 +42,7 @@ const TeamsPage = () => {
   const clearOffers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.delete('http://localhost:5004/api/teams/debug/clear-offers', {
+      const response = await axios.delete('https://sportify-teams.onrender.com/api/teams/debug/clear-offers', {
         headers: { 'x-auth-token': token }
       });
       
@@ -60,7 +60,7 @@ const TeamsPage = () => {
       
       // Step 1: Create test offer
       const token = localStorage.getItem('token');
-      const createResponse = await axios.post('http://localhost:5004/api/teams/debug/create-test-offer', {}, {
+      const createResponse = await axios.post('https://sportify-teams.onrender.com/api/teams/debug/create-test-offer', {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -69,7 +69,7 @@ const TeamsPage = () => {
       // Step 2: Get the created offer
       await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
       
-      const offersResponse = await axios.get('http://localhost:5004/api/teams/offers/received', {
+      const offersResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/offers/received', {
         headers: { 'x-auth-token': token }
       });
       
@@ -84,7 +84,7 @@ const TeamsPage = () => {
       info(`📋 Step 2: Found test offer ID: ${testOffer._id}`);
       
       // Step 3: Accept the offer
-      await axios.put(`http://localhost:5004/api/teams/offers/${testOffer._id}/accept`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/offers/${testOffer._id}/accept`, {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -93,7 +93,7 @@ const TeamsPage = () => {
       // Step 4: Check for created chat
       await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
       
-      const chatsResponse = await axios.get('http://localhost:5004/api/teams/chats', {
+      const chatsResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/chats', {
         headers: { 'x-auth-token': token }
       });
       
@@ -119,7 +119,7 @@ const TeamsPage = () => {
       
       // Step 1: Test the debug endpoint (no auth required)
       try {
-        const debugResponse = await axios.get('http://localhost:5004/api/teams/debug/test-chat');
+        const debugResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/debug/test-chat');
         success(`✅ Debug endpoint: ${debugResponse.data.message}`);
         info(`📊 Total chats in DB: ${debugResponse.data.totalChats}`);
       } catch (debugErr) {
@@ -128,7 +128,7 @@ const TeamsPage = () => {
       
       // Step 2: Test user chats endpoint
       try {
-        const chatsResponse = await axios.get('http://localhost:5004/api/teams/chats', {
+        const chatsResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/chats', {
           headers: { 'x-auth-token': token }
         });
         success(`✅ User chats loaded: ${chatsResponse.data.chats?.length || 0} chats found`);
@@ -184,7 +184,7 @@ const TeamsPage = () => {
         headers['x-auth-token'] = token;
       }
       
-      const response = await axios.get('http://localhost:5004/api/teams?limit=100', {
+      const response = await axios.get('https://sportify-teams.onrender.com/api/teams?limit=100', {
         headers
       });
       
@@ -253,7 +253,7 @@ const TeamsPage = () => {
       };
 
       // Send notification to backend
-      await axios.post('http://localhost:5004/api/teams/offers/create', offerData, {
+      await axios.post('https://sportify-teams.onrender.com/api/teams/offers/create', offerData, {
         headers: { 'x-auth-token': token }
       });
 
@@ -440,7 +440,7 @@ Time: ${searchForm.time}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-3">
                       <Avatar
-                        src={team.logo ? `http://localhost:5004${team.logo}` : null}
+                        src={team.logo ? `https://sportify-teams.onrender.com${team.logo}` : null}
                         alt={team.name}
                         size="md"
                         className="ring-2 ring-slate-600"
@@ -655,7 +655,7 @@ Time: ${searchForm.time}
                       >
                         <div className="flex items-center space-x-3">
                           <Avatar
-                            src={team.logo ? `http://localhost:5004${team.logo}` : null}
+                            src={team.logo ? `https://sportify-teams.onrender.com${team.logo}` : null}
                             alt={team.name}
                             size="sm"
                             className="ring-2 ring-slate-600"

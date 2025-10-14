@@ -21,7 +21,7 @@ const MyTeamsTab = ({ user }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5004/api/teams/user/me', {
+      const response = await axios.get('https://sportify-teams.onrender.com/api/teams/user/me', {
         headers: { 'x-auth-token': token }
       });
       
@@ -114,7 +114,7 @@ const MyTeamsTab = ({ user }) => {
       setDeleting(true);
       const token = localStorage.getItem('token');
       
-      await axios.delete(`http://localhost:5004/api/teams/${deleteModal.team._id}`, {
+      await axios.delete(`https://sportify-teams.onrender.com/api/teams/${deleteModal.team._id}`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -180,7 +180,7 @@ const MyTeamsTab = ({ user }) => {
         
         console.log(`Attempting to leave team: ${leaveModal.team._id} for user: ${userId}`);
         
-        const response = await axios.delete(`http://localhost:5004/api/teams/${leaveModal.team._id}/members/${userId}`, {
+        const response = await axios.delete(`https://sportify-teams.onrender.com/api/teams/${leaveModal.team._id}/members/${userId}`, {
           headers: { 'x-auth-token': token }
         });
         

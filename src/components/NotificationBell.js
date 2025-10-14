@@ -22,7 +22,7 @@ const NotificationBell = ({ user }) => {
       
       // Fetch team invitations - with error handling
       try {
-        const invitationsResponse = await axios.get('http://localhost:5004/api/teams/invitations/received', {
+        const invitationsResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/invitations/received', {
           headers: { 'x-auth-token': token }
         });
         setNotifications(invitationsResponse.data.invitations || []);
@@ -33,7 +33,7 @@ const NotificationBell = ({ user }) => {
       
       // Fetch join requests (for captains) - with error handling
       try {
-        const joinRequestsResponse = await axios.get('http://localhost:5004/api/teams/join-requests/received', {
+        const joinRequestsResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/join-requests/received', {
           headers: { 'x-auth-token': token }
         });
         setJoinRequests(joinRequestsResponse.data.joinRequests || []);
@@ -44,7 +44,7 @@ const NotificationBell = ({ user }) => {
       
       // Fetch team offers (for captains) - with error handling
       try {
-        const offersResponse = await axios.get('http://localhost:5004/api/teams/offers/received', {
+        const offersResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/offers/received', {
           headers: { 'x-auth-token': token }
         });
         // Filter to only show pending offers
@@ -105,7 +105,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [invitationId]: 'accepting' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/invitations/${invitationId}/accept`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/invitations/${invitationId}/accept`, {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -124,7 +124,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [invitationId]: 'declining' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/invitations/${invitationId}/decline`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/invitations/${invitationId}/decline`, {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -143,7 +143,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [requestId]: 'approving' }));
       const token = localStorage.getItem('token');
       
-      await axios.post(`http://localhost:5004/api/teams/${teamId}/handle-request`, {
+      await axios.post(`https://sportify-teams.onrender.com/api/teams/${teamId}/handle-request`, {
         requestId: requestId,
         action: 'approve'
       }, {
@@ -165,7 +165,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [requestId]: 'rejecting' }));
       const token = localStorage.getItem('token');
       
-      await axios.post(`http://localhost:5004/api/teams/${teamId}/handle-request`, {
+      await axios.post(`https://sportify-teams.onrender.com/api/teams/${teamId}/handle-request`, {
         requestId: requestId,
         action: 'reject'
       }, {
@@ -187,7 +187,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [offerId]: 'accepting' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/offers/${offerId}/accept`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/offers/${offerId}/accept`, {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -215,7 +215,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [offerId]: 'declining' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/offers/${offerId}/decline`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/offers/${offerId}/decline`, {}, {
         headers: { 'x-auth-token': token }
       });
       

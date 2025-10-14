@@ -18,7 +18,7 @@ export const usePlayersAPI = () => {
       if (search) params.search = search;
       if (teamId) params.teamId = teamId;
       
-      const response = await axios.get('http://localhost:5004/api/players', {
+      const response = await axios.get('https://sportify-teams.onrender.com/api/players', {
         headers: { 'x-auth-token': token },
         params
       });
@@ -53,7 +53,7 @@ export const usePlayersAPI = () => {
       
       if (teamId) params.teamId = teamId;
       
-      const response = await axios.get('http://localhost:5004/api/players/search', {
+      const response = await axios.get('https://sportify-teams.onrender.com/api/players/search', {
         headers: { 'x-auth-token': token },
         params
       });
@@ -82,7 +82,7 @@ export const usePlayersAPI = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5004/api/players/team/${teamId}`, {
+      const response = await axios.get(`https://sportify-teams.onrender.com/api/players/team/${teamId}`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -111,7 +111,7 @@ export const usePlayersAPI = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:5004/api/players/match-teams', {
+      const response = await axios.post('https://sportify-teams.onrender.com/api/players/match-teams', {
         team1Id,
         team2Id
       }, {
@@ -153,7 +153,7 @@ export const usePlayersAPI = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5004/api/players/${playerId}`, {
+      const response = await axios.get(`https://sportify-teams.onrender.com/api/players/${playerId}`, {
         headers: { 'x-auth-token': token }
       });
       

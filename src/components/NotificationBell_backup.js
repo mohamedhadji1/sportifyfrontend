@@ -21,18 +21,18 @@ const NotificationBell = ({ user }) => {
       const token = localStorage.getItem('token');
       
       // Fetch team invitations
-      const invitationsResponse = await axios.get('http://localhost:5004/api/teams/invitations/received', {
+      const invitationsResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/invitations/received', {
         headers: { 'x-auth-token': token }
       });
       
       // Fetch join requests (for captains)
-      const joinRequestsResponse = await axios.get('http://localhost:5004/api/teams/join-requests/received', {
+      const joinRequestsResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/join-requests/received', {
         headers: { 'x-auth-token': token }
       });
       
       // Fetch team offers (for captains)
       try {
-        const offersResponse = await axios.get('http://localhost:5004/api/teams/offers', {
+        const offersResponse = await axios.get('https://sportify-teams.onrender.com/api/teams/offers', {
           headers: { 'x-auth-token': token }
         });
         setTeamOffers(offersResponse.data.offers || []);
@@ -93,7 +93,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [invitationId]: 'accepting' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/invitations/${invitationId}/accept`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/invitations/${invitationId}/accept`, {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -112,7 +112,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [invitationId]: 'declining' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/invitations/${invitationId}/decline`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/invitations/${invitationId}/decline`, {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -131,7 +131,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [requestId]: 'approving' }));
       const token = localStorage.getItem('token');
       
-      await axios.post(`http://localhost:5004/api/teams/${teamId}/handle-request`, {
+      await axios.post(`https://sportify-teams.onrender.com/api/teams/${teamId}/handle-request`, {
         requestId: requestId,
         action: 'approve'
       }, {
@@ -153,7 +153,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [requestId]: 'rejecting' }));
       const token = localStorage.getItem('token');
       
-      await axios.post(`http://localhost:5004/api/teams/${teamId}/handle-request`, {
+      await axios.post(`https://sportify-teams.onrender.com/api/teams/${teamId}/handle-request`, {
         requestId: requestId,
         action: 'reject'
       }, {
@@ -175,7 +175,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [offerId]: 'accepting' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/offers/${offerId}/accept`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/offers/${offerId}/accept`, {}, {
         headers: { 'x-auth-token': token }
       });
       
@@ -194,7 +194,7 @@ const NotificationBell = ({ user }) => {
       setProcessing(prev => ({ ...prev, [offerId]: 'declining' }));
       const token = localStorage.getItem('token');
       
-      await axios.put(`http://localhost:5004/api/teams/offers/${offerId}/decline`, {}, {
+      await axios.put(`https://sportify-teams.onrender.com/api/teams/offers/${offerId}/decline`, {}, {
         headers: { 'x-auth-token': token }
       });
       

@@ -40,7 +40,7 @@ const RequestEquipmentModal = ({ equipment, onClose, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        'http://localhost:5004/api/teams/user-teams',
+        'https://sportify-teams.onrender.com/api/teams/user-teams',
         {
           headers: {
             'x-auth-token': token,

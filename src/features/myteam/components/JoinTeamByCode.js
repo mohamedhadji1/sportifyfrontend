@@ -61,7 +61,7 @@ const JoinTeamByCode = ({ isOpen, onClose, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:5004/api/teams/join-by-code',
+        'https://sportify-teams.onrender.com/api/teams/join-by-code',
         { secretCode: fullCode },
         {
           headers: { 'x-auth-token': token }

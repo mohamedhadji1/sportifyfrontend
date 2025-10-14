@@ -175,7 +175,7 @@ const BookingCalendar = ({ court, isOpen, onClose, onBookingComplete }) => {
         return;
       }
 
-      const url = `http://localhost:5004/api/teams/user/me`;
+      const url = `https://sportify-teams.onrender.com/api/teams/user/me`;
       console.log('📡 Fetching teams from:', url);
 
       const response = await fetch(url, {

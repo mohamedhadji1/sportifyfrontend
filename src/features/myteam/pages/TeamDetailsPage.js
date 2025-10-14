@@ -42,7 +42,7 @@ const TeamDetailsPage = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5004/api/teams/${teamId}`, {
+      const response = await axios.get(`https://sportify-teams.onrender.com/api/teams/${teamId}`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -126,7 +126,7 @@ const TeamDetailsPage = () => {
 
       console.log('Saving formation and positions:', updateData);
 
-      const response = await axios.put(`http://localhost:5004/api/teams/${teamId}/formation`, updateData, {
+      const response = await axios.put(`https://sportify-teams.onrender.com/api/teams/${teamId}/formation`, updateData, {
         headers: { 'x-auth-token': token }
       });
       

@@ -1,7 +1,11 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from '../../../shared/constants/config';
+
+// Prefer explicit auth service URL like the rest of the app. This mirrors
+// other components that use REACT_APP_API_URL or REACT_APP_AUTH_SERVICE_URL
+// and falls back to the public auth host.
+const AUTH_API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api';
 import ReCaptchaV3 from '../../../shared/ui/components/ReCaptchaV3';
 
 const AdminSignInPage = () => {
@@ -35,7 +39,7 @@ const AdminSignInPage = () => {
     }
 
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, { // Assuming an admin login endpoint
+      const response = await axios.post(`${AUTH_API}/auth/login`, { // Explicit auth service endpoint
         email,
         password,
         role: 'Admin', // Added role for admin login

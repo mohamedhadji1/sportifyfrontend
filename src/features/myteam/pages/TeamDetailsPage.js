@@ -173,34 +173,6 @@ const TeamDetailsPage = () => {
     try {
       const storedUser = localStorage.getItem('user');
       const parsedUser = storedUser ? JSON.parse(storedUser) : null;
-
-      // If parsedUser is missing id fields, try to decode token stored in localStorage
-      if (parsedUser && (parsedUser.id || parsedUser._id)) return parsedUser;
-
-      let token = localStorage.getItem('token') || localStorage.getItem('authToken');
-      if (token && (!parsedUser || (!parsedUser.id && !parsedUser._id))) {
-        try {
-          // strip common prefix
-          token = token.replace(/^Bearer\s+/i, '');
-          const parts = token.split('.');
-          if (parts.length >= 2) {
-            let b64 = parts[1];
-            // convert from base64url to base64
-            b64 = b64.replace(/-/g, '+').replace(/_/g, '/');
-            // add padding
-            const pad = b64.length % 4;
-            if (pad !== 0) {
-              b64 += '='.repeat(4 - pad);
-            }
-            const payload = JSON.parse(atob(b64));
-            const id = payload.id || payload._id || payload.userId || payload.sub;
-            return { ...(parsedUser || {}), id, _id: id, email: payload.email || payload.emailAddress };
-          }
-        } catch (e) {
-          // ignore decoding errors
-        }
-      }
-
       return parsedUser;
     } catch (error) {
       console.error('Error parsing user data:', error);
@@ -219,9 +191,9 @@ const TeamDetailsPage = () => {
     if (!currentUser || !team) {
       return false;
     }
-    // Normalize captain id from several shapes
-    const captainId = (team.captain && (team.captain._id || team.captain.id || team.captain.userId)) || team.captain;
-    let userId = currentUser.id || currentUser._id || currentUser.userId;
+    
+    const captainId = typeof team.captain === 'object' ? team.captain._id : team.captain;
+    let userId = currentUser.id || currentUser._id;
     
     // If userId is still undefined, try to get it from the team members list
     // by matching the current user's email with team members
@@ -235,21 +207,10 @@ const TeamDetailsPage = () => {
       }
     }
     
-    // As last resort, try matching by email with the captain's userInfo
-    if (!userId && team.captain && typeof team.captain === 'object' && team.captain.email) {
-      if (team.captain.email === currentUser.email) {
-        userId = team.captain._id || team.captain.id || team.captain.userId;
-      }
-    }
-    
     // Ensure both are strings for comparison
     const normalizedCaptainId = captainId ? captainId.toString() : '';
     const normalizedUserId = userId ? userId.toString() : '';
     const isCaptain = normalizedCaptainId === normalizedUserId && normalizedCaptainId !== '';
-
-    if (!isCaptain && process.env.REACT_APP_DEBUG_TEAM_MEMBERS === 'true') {
-      console.debug('[TEAM DEBUG] captain check:', { captainId: normalizedCaptainId, userId: normalizedUserId, teamCaptainRaw: team.captain, currentUser });
-    }
     
     return isCaptain;
   };

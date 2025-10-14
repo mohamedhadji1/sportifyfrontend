@@ -17,6 +17,7 @@ try {
 }
 
 const TEAM_SERVICE_URL = process.env.REACT_APP_TEAM_SERVICE_URL || 'https://sportify-teams.onrender.com';
+const COURT_SERVICE_URL = process.env.REACT_APP_COURT_SERVICE_URL || 'https://sportify-courts.onrender.com';
 
 /**
  * Returns the appropriate image URL with fallback to default images
@@ -61,6 +62,13 @@ export const getImageUrl = (imageUrl, type = 'team') => {
   // Handle backend paths that need to be prefixed with API URL
   if (imageUrl.startsWith('/')) {
     //
+    
+    // For court images
+    if (type === 'court') {
+      const fullUrl = `${COURT_SERVICE_URL}${imageUrl}`;
+      console.log(`🏟️ Court image URL: ${fullUrl}`);
+      return fullUrl;
+    }
     
     // For team service images (team logos)
     if (type === 'team') {

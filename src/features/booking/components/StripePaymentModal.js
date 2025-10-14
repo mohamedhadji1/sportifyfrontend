@@ -70,17 +70,28 @@ const PaymentForm = ({
       setError(null);
 
       console.log('💳 Creating payment intent with bookingDetails:', bookingDetails);
-      console.log('💳 Booking ID:', bookingDetails?._id);
+      console.log('💳 Booking ID (_id):', bookingDetails?._id);
+      console.log('💳 Booking ID (id):', bookingDetails?.id);
       console.log('💳 Total Price:', bookingDetails?.totalPrice);
 
-      if (!bookingDetails?._id || !bookingDetails?.totalPrice) {
-        throw new Error('Missing booking ID or total price');
+      // Try multiple field names for booking ID (backend uses 'id', not '_id')
+      const bookingId = bookingDetails?.id || bookingDetails?._id || bookingDetails?.bookingId;
+      const totalPrice = bookingDetails?.totalPrice || bookingDetails?.price || bookingDetails?.amount;
+
+      if (!bookingId) {
+        console.error('❌ No booking ID found. BookingDetails:', bookingDetails);
+        throw new Error('Missing booking ID. Please ensure the booking was created successfully.');
+      }
+
+      if (!totalPrice) {
+        console.error('❌ No total price found. BookingDetails:', bookingDetails);
+        throw new Error('Missing total price. Please ensure the booking has a valid price.');
       }
 
       const token = localStorage.getItem('token');
       const paymentData = {
-        bookingId: bookingDetails._id,
-        amount: bookingDetails.totalPrice,
+        bookingId: bookingId,
+        amount: totalPrice,
         currency: 'eur'
       };
       
@@ -158,7 +169,7 @@ const PaymentForm = ({
           },
           body: JSON.stringify({
             paymentIntentId: paymentIntent.id,
-            bookingId: bookingDetails._id
+            bookingId: bookingDetails.id || bookingDetails._id || bookingDetails.bookingId
           })
         });
 

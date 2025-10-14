@@ -1,9 +1,6 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ReCaptchaV3 from '../../../shared/ui/components/ReCaptchaV3';
-
-const API_URL = "https://sportifyauth.onrender.com/api";
 
 const AdminSignInPage = () => {
   const [email, setEmail] = useState('');
@@ -12,10 +9,17 @@ const AdminSignInPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const recaptchaRef = useRef(null);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+
+    if (!email || !password) {
+      setError("Email and password are required.");
+      setLoading(false);
+      return;
+    }
 
     // Execute reCAPTCHA v3 before submitting
     let recaptchaToken = "";
@@ -36,36 +40,51 @@ const AdminSignInPage = () => {
     }
 
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, { // Assuming an admin login endpoint
-        email,
-        password,
-        role: 'Admin', // Added role for admin login
-        recaptchaToken
+      const requestBody = { 
+        email, 
+        password, 
+        role: 'Admin',
+        recaptchaToken 
+      };
+      
+      const response = await fetch("https://sportifyauth.onrender.com/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
       });
 
-      if (response.data.success && response.data.user) { // Added check for response.data.user
-        localStorage.setItem('token', response.data.token);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.msg || "Authentication failed");
+      }
+
+      if (data.success && data.user) {
+        localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify({ 
-          fullName: response.data.user.fullName || 'Admin',
-          email: response.data.user.email,
-          role: response.data.user.role || 'Admin' // Ensure role is set
+          fullName: data.user.fullName || 'Admin',
+          email: data.user.email,
+          role: data.user.role || 'Admin'
         }));
         
         // Dispatch a custom event to notify Navbar or other components of auth change
         window.dispatchEvent(new CustomEvent('authChange'));
         
-        navigate('/dashboard'); // Redirect to dashboard or admin-specific area
-      } else if (response.data.success && !response.data.user) {
+        navigate('/dashboard');
+      } else if (data.success && !data.user) {
         setError('Login successful, but user data is missing. Please contact support.');
-        console.error('Admin login error: User data missing in response', response.data);
+        console.error('Admin login error: User data missing in response', data);
       } else {
-        setError(response.data.msg || 'Login failed. Please check your credentials.');
+        setError(data.msg || 'Login failed. Please check your credentials.');
       }
     } catch (err) {
-      setError(err.response?.data?.msg || 'An error occurred. Please try again.');
       console.error('Admin login error:', err);
+      setError(err.message || 'An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

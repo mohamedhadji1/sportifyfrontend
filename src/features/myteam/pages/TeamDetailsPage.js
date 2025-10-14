@@ -177,13 +177,25 @@ const TeamDetailsPage = () => {
       // If parsedUser is missing id fields, try to decode token stored in localStorage
       if (parsedUser && (parsedUser.id || parsedUser._id)) return parsedUser;
 
-      const token = localStorage.getItem('token') || localStorage.getItem('authToken');
+      let token = localStorage.getItem('token') || localStorage.getItem('authToken');
       if (token && (!parsedUser || (!parsedUser.id && !parsedUser._id))) {
         try {
-          // Basic JWT decode without verifying signature (frontend-only extraction)
-          const payload = JSON.parse(atob(token.split('.')[1]));
-          const id = payload.id || payload._id || payload.userId;
-          return { ...(parsedUser || {}), id, _id: id, email: payload.email };
+          // strip common prefix
+          token = token.replace(/^Bearer\s+/i, '');
+          const parts = token.split('.');
+          if (parts.length >= 2) {
+            let b64 = parts[1];
+            // convert from base64url to base64
+            b64 = b64.replace(/-/g, '+').replace(/_/g, '/');
+            // add padding
+            const pad = b64.length % 4;
+            if (pad !== 0) {
+              b64 += '='.repeat(4 - pad);
+            }
+            const payload = JSON.parse(atob(b64));
+            const id = payload.id || payload._id || payload.userId || payload.sub;
+            return { ...(parsedUser || {}), id, _id: id, email: payload.email || payload.emailAddress };
+          }
         } catch (e) {
           // ignore decoding errors
         }

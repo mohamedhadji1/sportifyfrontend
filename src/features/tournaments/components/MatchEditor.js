@@ -93,8 +93,7 @@ const MatchEditor = ({
               let usersMap = {};
               if (userIds.length > 0) {
                 try {
-                  const API = process.env.REACT_APP_API_URL || process.env.REACT_APP_AUTH_SERVICE_URL || 'https://sportifyauth.onrender.com/api'
-                  const bulkResponse = await fetch(`${API}/auth/users/bulk`, {
+                  const bulkResponse = await fetch('https://sportifyauth.onrender.com/api/auth/users/bulk', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'

@@ -44,7 +44,7 @@ export const ProfileImageUpload = ({ currentImage, onImageUpdate, className = ""
       formData.append("profileImage", file)
 
       const token = localStorage.getItem("token")
-      const response = await fetch("https://sportifyauth.onrender.com/api/upload-profile-image", {
+      const response = await fetch("https://sportifyauth.onrender.com/api/auth/upload-profile-image", {
         method: "POST",
         headers: {
           "x-auth-token": token,
@@ -118,7 +118,7 @@ export const ProfileImageUpload = ({ currentImage, onImageUpdate, className = ""
 
     try {
       const token = localStorage.getItem("token")
-      const response = await fetch("https://sportifyauth.onrender.com/api/remove-profile-image", {
+      const response = await fetch("https://sportifyauth.onrender.com/api/auth/remove-profile-image", {
         method: "DELETE",
         headers: {
           "x-auth-token": token,

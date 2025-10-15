@@ -31,7 +31,7 @@ const CartPage = () => {
   const fetchCart = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/ecommerce/cart', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/ecommerce/cart', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -56,7 +56,7 @@ const CartPage = () => {
     setUpdating(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5009/api/ecommerce/cart/update/${itemId}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/ecommerce/cart/update/${itemId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ const CartPage = () => {
     setUpdating(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5009/api/ecommerce/cart/remove/${itemId}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/ecommerce/cart/remove/${itemId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -112,7 +112,7 @@ const CartPage = () => {
     setUpdating(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/ecommerce/cart/clear', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/ecommerce/cart/clear', {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -142,7 +142,7 @@ const CartPage = () => {
     setCheckingOut(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/ecommerce/checkout', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/ecommerce/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -250,7 +250,7 @@ const CartPage = () => {
                       <div className="flex-shrink-0">
                         {item.equipmentTypeId?.ecommerce?.images?.[0] ? (
                           <img
-                            src={`http://localhost:5009/uploads/equipment-types/${item.equipmentTypeId.ecommerce.images[0].filename}`}
+                            src={`https://sportify-equipement.onrender.com/uploads/equipment-types/${item.equipmentTypeId.ecommerce.images[0].filename}`}
                             alt={item.equipmentTypeName}
                             className="w-20 h-20 object-cover rounded-lg border"
                           />

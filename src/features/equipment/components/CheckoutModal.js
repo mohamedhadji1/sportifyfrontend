@@ -64,7 +64,7 @@ const CheckoutModal = ({ isOpen, onClose, cart, onOrderCreated }) => {
       const token = localStorage.getItem('token');
       
       const response = await axios.post(
-        'http://localhost:5009/api/orders/create',
+        'https://sportify-equipement.onrender.com/api/orders/create',
         orderData,
         {
           headers: { 'x-auth-token': token }

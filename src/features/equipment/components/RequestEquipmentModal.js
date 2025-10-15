@@ -89,7 +89,7 @@ const RequestEquipmentModal = ({ equipment, onClose, onSuccess }) => {
       };
 
       const response = await axios.post(
-        'http://localhost:5009/api/equipment/requests',
+        'https://sportify-equipement.onrender.com/api/equipment/requests',
         requestData,
         {
           headers: {
@@ -164,7 +164,7 @@ const RequestEquipmentModal = ({ equipment, onClose, onSuccess }) => {
           <div className="flex items-center space-x-4">
             {equipment?.images?.[0] ? (
               <img
-                src={`http://localhost:5009/uploads/equipment/${equipment.images[0]}`}
+                src={`https://sportify-equipement.onrender.com/uploads/equipment/${equipment.images[0]}`}
                 alt={equipment.name}
                 className="w-16 h-16 object-cover rounded-lg"
               />

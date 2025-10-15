@@ -24,7 +24,7 @@ const CartModal = ({ isOpen, onClose, onCheckout }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5009/api/cart', {
+      const response = await axios.get('https://sportify-equipement.onrender.com/api/cart', {
         headers: { 'x-auth-token': token }
       });
       setCart(response.data.data);
@@ -47,7 +47,7 @@ const CartModal = ({ isOpen, onClose, onCheckout }) => {
       const token = localStorage.getItem('token');
       
       const response = await axios.put(
-        `http://localhost:5009/api/cart/update/${itemId}`,
+        `https://sportify-equipement.onrender.com/api/cart/update/${itemId}`,
         { quantity: newQuantity },
         { headers: { 'x-auth-token': token } }
       );
@@ -68,7 +68,7 @@ const CartModal = ({ isOpen, onClose, onCheckout }) => {
       const token = localStorage.getItem('token');
       
       const response = await axios.delete(
-        `http://localhost:5009/api/cart/remove/${itemId}`,
+        `https://sportify-equipement.onrender.com/api/cart/remove/${itemId}`,
         { headers: { 'x-auth-token': token } }
       );
       
@@ -85,7 +85,7 @@ const CartModal = ({ isOpen, onClose, onCheckout }) => {
   const clearCart = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.delete('http://localhost:5009/api/cart/clear', {
+      const response = await axios.delete('https://sportify-equipement.onrender.com/api/cart/clear', {
         headers: { 'x-auth-token': token }
       });
       

@@ -46,7 +46,7 @@ const CheckoutForm = ({ onBack, onSuccess }) => {
   const fetchCart = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5009/api/cart', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/cart', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -88,7 +88,7 @@ const CheckoutForm = ({ onBack, onSuccess }) => {
 
     try {
       // Step 1: Create checkout session
-      const checkoutResponse = await fetch('http://localhost:5009/api/cart/checkout', {
+      const checkoutResponse = await fetch('https://sportify-equipement.onrender.com/api/cart/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -141,7 +141,7 @@ const CheckoutForm = ({ onBack, onSuccess }) => {
       }
 
       // Step 5: Confirm payment with backend
-      const confirmResponse = await fetch('http://localhost:5009/api/cart/confirm-payment', {
+      const confirmResponse = await fetch('https://sportify-equipement.onrender.com/api/cart/confirm-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -29,7 +29,7 @@ const ProposalsList = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      let url = 'http://localhost:5009/api/proposals';
+      let url = 'https://sportify-equipement.onrender.com/api/proposals';
       
       if (filter !== 'all') {
         url += `?status=${filter}`;
@@ -62,7 +62,7 @@ const ProposalsList = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5009/api/proposals/${proposalId}/review`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/proposals/${proposalId}/review`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -330,7 +330,7 @@ const ProposalsList = () => {
                               {proposal.images.map((image, index) => (
                                 <img
                                   key={index}
-                                  src={`http://localhost:5009/uploads/proposals/${image.filename}`}
+                                  src={`https://sportify-equipement.onrender.com/uploads/proposals/${image.filename}`}
                                   alt={`Equipment ${index + 1}`}
                                   className="w-full h-24 object-cover rounded border"
                                 />

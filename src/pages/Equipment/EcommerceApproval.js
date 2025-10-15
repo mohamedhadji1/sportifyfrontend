@@ -31,7 +31,7 @@ const EcommerceApproval = () => {
   const fetchPendingProposals = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/proposals/pending-ecommerce', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/proposals/pending-ecommerce', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -59,7 +59,7 @@ const EcommerceApproval = () => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5009/api/proposals/${proposalId}/approve-ecommerce`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/proposals/${proposalId}/approve-ecommerce`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ const EcommerceApproval = () => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5009/api/proposals/${proposalId}/reject-ecommerce`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/proposals/${proposalId}/reject-ecommerce`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -285,7 +285,7 @@ const EcommerceApproval = () => {
                               {proposal.images.map((image, index) => (
                                 <img
                                   key={index}
-                                  src={`http://localhost:5009/uploads/proposals/${image.filename}`}
+                                  src={`https://sportify-equipement.onrender.com/uploads/proposals/${image.filename}`}
                                   alt={`Equipment ${index + 1}`}
                                   className="w-full h-24 object-cover rounded border"
                                 />

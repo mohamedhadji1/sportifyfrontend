@@ -63,7 +63,7 @@ const Marketplace = ({ onCartUpdate }) => {
       limit: pagination.limit,
     })
 
-    const result = await safeFetch(`http://localhost:5009/api/marketplace?${queryParams}`)
+    const result = await safeFetch(`https://sportify-equipement.onrender.com/api/marketplace?${queryParams}`)
 
     if (result.success && result.data && result.data.success && result.data.data) {
       setProducts(result.data.data.products || [])
@@ -80,7 +80,7 @@ const Marketplace = ({ onCartUpdate }) => {
   const fetchCartCount = safeAsync(async () => {
     if (!user) return
 
-    const result = await safeFetch("http://localhost:5009/api/cart/count", {
+    const result = await safeFetch("https://sportify-equipement.onrender.com/api/cart/count", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -102,7 +102,7 @@ const Marketplace = ({ onCartUpdate }) => {
     console.log("Adding to cart:", { productId, quantity, source: "marketplace" })
 
     try {
-      const response = await fetch("http://localhost:5009/api/cart/add", {
+      const response = await fetch("https://sportify-equipement.onrender.com/api/cart/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -172,7 +172,7 @@ const Marketplace = ({ onCartUpdate }) => {
 
   const showProductDetails = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:5009/api/marketplace/product/${productId}`)
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/marketplace/product/${productId}`)
       const data = await response.json()
       if (data && data.success && data.data && data.data.product) {
         setSelectedProduct(data.data.product)
@@ -238,7 +238,7 @@ const Marketplace = ({ onCartUpdate }) => {
     if (!imagePath) return null
 
     if (typeof imagePath === "object" && imagePath.filename) {
-      return `http://localhost:5009/uploads/proposals/${imagePath.filename}`
+      return `https://sportify-equipement.onrender.com/uploads/proposals/${imagePath.filename}`
     }
 
     if (typeof imagePath === "string") {
@@ -248,15 +248,15 @@ const Marketplace = ({ onCartUpdate }) => {
 
       if (imagePath.startsWith("/uploads/") || imagePath.startsWith("uploads/")) {
         const cleanPath = imagePath.startsWith("/") ? imagePath : "/" + imagePath
-        return `http://localhost:5009${cleanPath}`
+        return `https://sportify-equipement.onrender.com${cleanPath}`
       }
 
       if (imagePath.includes("\\") || imagePath.includes("/")) {
         const fileName = imagePath.split(/[\\/]/).pop()
-        return `http://localhost:5009/uploads/proposals/${fileName}`
+        return `https://sportify-equipement.onrender.com/uploads/proposals/${fileName}`
       }
 
-      return `http://localhost:5009/uploads/proposals/${imagePath}`
+      return `https://sportify-equipement.onrender.com/uploads/proposals/${imagePath}`
     }
 
     return null

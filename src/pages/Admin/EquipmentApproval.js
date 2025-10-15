@@ -65,7 +65,7 @@ const EquipmentApproval = () => {
         limit: pagination.limit
       });
 
-      const response = await fetch(`http://localhost:5009/api/admin/equipment-proposals?${queryParams}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/admin/equipment-proposals?${queryParams}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ const EquipmentApproval = () => {
       setProcessing(true);
       const token = localStorage.getItem('token');
 
-      const response = await fetch(`http://localhost:5009/api/admin/approve-equipment/${proposalId}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/admin/approve-equipment/${proposalId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -134,7 +134,7 @@ const EquipmentApproval = () => {
       setProcessing(true);
       const token = localStorage.getItem('token');
 
-      const response = await fetch(`http://localhost:5009/api/admin/reject-equipment/${proposalId}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/admin/reject-equipment/${proposalId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -174,7 +174,7 @@ const EquipmentApproval = () => {
       setProcessing(true);
       const token = localStorage.getItem('token');
 
-      const response = await fetch('http://localhost:5009/api/admin/bulk-review-equipment', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/admin/bulk-review-equipment', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -860,7 +860,7 @@ const EquipmentApproval = () => {
                     {selectedProposal.images.map((image, index) => (
                       <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
                         <img
-                          src={`http://localhost:5009/uploads/${image.filename}`}
+                          src={`https://sportify-equipement.onrender.com/uploads/${image.filename}`}
                           alt={`Equipment ${index + 1}`}
                           className="w-full h-32 object-cover"
                           onError={(e) => {

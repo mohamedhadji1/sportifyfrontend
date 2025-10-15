@@ -48,7 +48,7 @@ const OrderHistory = () => {
         ...filters
       });
 
-      const response = await fetch(`http://localhost:5009/api/payments/orders?${queryParams}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/payments/orders?${queryParams}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -115,7 +115,7 @@ const OrderHistory = () => {
 
   const viewOrderDetails = async (orderId) => {
     try {
-      const response = await fetch(`http://localhost:5009/api/payments/order/${orderId}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/payments/order/${orderId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

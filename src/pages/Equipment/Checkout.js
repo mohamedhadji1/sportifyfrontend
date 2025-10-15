@@ -84,7 +84,7 @@ const Checkout = ({ onBack, cart, onSuccess }) => {
       setStripeElements(elementsModule);
 
       // Create checkout session
-      const response = await fetch('http://localhost:5009/api/cart/checkout', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/cart/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -138,7 +138,7 @@ const Checkout = ({ onBack, cart, onSuccess }) => {
       const mockPaymentIntentId = `pi_${Date.now()}_test`;
       
       // Confirm payment on backend
-      const confirmResponse = await fetch('http://localhost:5009/api/cart/confirm-payment', {
+      const confirmResponse = await fetch('https://sportify-equipement.onrender.com/api/cart/confirm-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -470,7 +470,7 @@ const Checkout = ({ onBack, cart, onSuccess }) => {
                       <div key={item._id || index} className="flex items-center space-x-3">
                         <div className="w-12 h-12 bg-secondary rounded-lg overflow-hidden flex-shrink-0">
                           <img
-                            src={item.image ? `http://localhost:5009/${item.image}` : '/api/placeholder/100/100'}
+                            src={item.image ? `https://sportify-equipement.onrender.com/${item.image}` : '/api/placeholder/100/100'}
                             alt={item.productName}
                             className="w-full h-full object-cover"
                             onError={(e) => {

@@ -52,7 +52,7 @@ const EquipmentModal = ({ equipment, editMode, onClose, onSuccess }) => {
       
       if (equipment.images && equipment.images.length > 0) {
         setPreviewImages(equipment.images.map(img => 
-          `http://localhost:5009/uploads/equipment/${img.filename || img}`
+          `https://sportify-equipement.onrender.com/uploads/equipment/${img.filename || img}`
         ));
       }
     }
@@ -80,7 +80,7 @@ const EquipmentModal = ({ equipment, editMode, onClose, onSuccess }) => {
     try {
       const token = localStorage.getItem('token');
       console.log('🔧 Fetching equipment types...');
-      const response = await axios.get('http://localhost:5009/api/equipment/types', {
+      const response = await axios.get('https://sportify-equipement.onrender.com/api/equipment/types', {
         headers: { 'x-auth-token': token }
       });
       console.log('✅ Equipment types response:', response.data);
@@ -180,8 +180,8 @@ const EquipmentModal = ({ equipment, editMode, onClose, onSuccess }) => {
       });
 
       const url = editMode 
-        ? `http://localhost:5009/api/equipment/${equipment._id}`
-        : 'http://localhost:5009/api/equipment';
+        ? `https://sportify-equipement.onrender.com/api/equipment/${equipment._id}`
+        : 'https://sportify-equipement.onrender.com/api/equipment';
       
       const method = editMode ? 'put' : 'post';
       const token = localStorage.getItem('token');

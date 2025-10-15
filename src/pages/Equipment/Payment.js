@@ -37,7 +37,7 @@ const CheckoutForm = ({ cart, onPaymentSuccess, onBack }) => {
   const createPaymentIntent = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/cart/checkout', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/cart/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ const CheckoutForm = ({ cart, onPaymentSuccess, onBack }) => {
   const confirmPayment = async (paymentIntentId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/cart/confirm-payment', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/cart/confirm-payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -230,7 +230,7 @@ const Payment = ({ onBack }) => {
   const fetchCart = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/cart', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/cart', {
         headers: {
           'Authorization': `Bearer ${token}`
         }

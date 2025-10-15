@@ -88,7 +88,7 @@ const EquipmentManagement = () => {
         limit: 20
       }).toString();
 
-      const response = await fetch(`http://localhost:5009/api/proposals?${queryParams}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/proposals?${queryParams}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -174,7 +174,7 @@ const EquipmentManagement = () => {
         limit: 20
       }).toString();
 
-      const response = await fetch(`http://localhost:5009/api/ecommerce/approved-proposals?${queryParams}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/ecommerce/approved-proposals?${queryParams}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -196,7 +196,7 @@ const EquipmentManagement = () => {
   const handleProposalAction = async (proposalId, decision, comments = '') => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5009/api/proposals/${proposalId}/approve`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/proposals/${proposalId}/approve`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -221,7 +221,7 @@ const EquipmentManagement = () => {
   const addToCart = async (equipmentId, quantity = 1) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/ecommerce/cart/add', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/ecommerce/cart/add', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -271,13 +271,13 @@ const EquipmentManagement = () => {
     if (typeof image === 'string') {
       if (image.startsWith('http')) return image
       const filename = image.split('\\').pop().split('/').pop()
-      return `http://localhost:5009/uploads/proposals/${filename}`
+      return `https://sportify-equipement.onrender.com/uploads/proposals/${filename}`
     }
-    if (image.filename) return `http://localhost:5009/uploads/proposals/${image.filename}`
+    if (image.filename) return `https://sportify-equipement.onrender.com/uploads/proposals/${image.filename}`
     if (image.path) {
       if (image.path.startsWith('http')) return image.path
       const filename = image.path.split('\\').pop().split('/').pop()
-      return `http://localhost:5009/uploads/proposals/${filename}`
+      return `https://sportify-equipement.onrender.com/uploads/proposals/${filename}`
     }
     return ''
   }

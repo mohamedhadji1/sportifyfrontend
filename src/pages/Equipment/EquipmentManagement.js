@@ -39,7 +39,7 @@ const EquipmentManagement = () => {
       setLoading(true);
       const token = localStorage.getItem('token');
       
-      let url = 'http://localhost:5009/api/equipment/proposals';
+      let url = 'https://sportify-equipement.onrender.com/api/equipment/proposals';
       const params = new URLSearchParams();
       
       if (filters.status) params.append('status', filters.status);
@@ -92,7 +92,7 @@ const EquipmentManagement = () => {
         limit: 20
       }).toString();
 
-      const response = await fetch(`http://localhost:5009/api/ecommerce/approved-proposals?${queryParams}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/ecommerce/approved-proposals?${queryParams}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -175,7 +175,7 @@ const EquipmentManagement = () => {
   const handleProposalAction = async (proposalId, action) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5009/api/equipment/proposals/${proposalId}/review`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/equipment/proposals/${proposalId}/review`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -213,7 +213,7 @@ const EquipmentManagement = () => {
       }
       
       // Utiliser le nouvel endpoint pour les propositions approuvées
-      const response = await fetch('http://localhost:5009/api/ecommerce/cart/add-proposal', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/ecommerce/cart/add-proposal', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -268,11 +268,11 @@ const EquipmentManagement = () => {
     // If it's an absolute file system path, extract the relative part
     if (imagePath.includes('uploads')) {
       const relativePath = imagePath.split('uploads')[1] || imagePath.split('uploads\\')[1];
-      return `http://localhost:5009/uploads${relativePath?.replace(/\\/g, '/')}`;
+      return `https://sportify-equipement.onrender.com/uploads${relativePath?.replace(/\\/g, '/')}`;
     }
     
     // Otherwise, treat as relative path
-    return `http://localhost:5009/${imagePath.replace(/^\/+/, '').replace(/\\/g, '/')}`;
+    return `https://sportify-equipement.onrender.com/${imagePath.replace(/^\/+/, '').replace(/\\/g, '/')}`;
   };
 
   // Render the proposals list (used by Admin view)

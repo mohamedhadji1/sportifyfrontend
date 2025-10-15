@@ -35,7 +35,7 @@ const EquipmentDetailsModal = ({ equipment, onClose, onUpdate }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://localhost:5009/api/equipment/${equipment._id}/maintenance`,
+        `https://sportify-equipement.onrender.com/api/equipment/${equipment._id}/maintenance`,
         maintenanceForm,
         {
           headers: {
@@ -105,7 +105,7 @@ const EquipmentDetailsModal = ({ equipment, onClose, onUpdate }) => {
             <div className="flex items-center space-x-4">
               {equipment?.images?.[0] ? (
                 <img
-                  src={`http://localhost:5009/uploads/equipment/${equipment.images[0]}`}
+                  src={`https://sportify-equipement.onrender.com/uploads/equipment/${equipment.images[0]}`}
                   alt={equipment.name}
                   className="w-16 h-16 object-cover rounded-lg border-2 border-white/20"
                 />

@@ -100,7 +100,7 @@ const ShoppingCart = ({ onBack, onCheckout }) => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/cart', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/cart', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ const ShoppingCart = ({ onBack, onCheckout }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5009/api/cart/update/${itemId}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/cart/update/${itemId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -150,7 +150,7 @@ const ShoppingCart = ({ onBack, onCheckout }) => {
   const removeItem = async (itemId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5009/api/cart/remove/${itemId}`, {
+      const response = await fetch(`https://sportify-equipement.onrender.com/api/cart/remove/${itemId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -169,7 +169,7 @@ const ShoppingCart = ({ onBack, onCheckout }) => {
   const clearCart = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5009/api/cart/clear', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/cart/clear', {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -206,7 +206,7 @@ const ShoppingCart = ({ onBack, onCheckout }) => {
       // Use the cart checkout endpoint
       const token = localStorage.getItem('token');
       
-      const response = await fetch('http://localhost:5009/api/cart/checkout', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/cart/checkout', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

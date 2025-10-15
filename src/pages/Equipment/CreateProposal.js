@@ -164,7 +164,7 @@ const CreateProposal = ({ onBack, onSuccess }) => {
 
       console.log('Submitting form data:', Object.fromEntries(submitData.entries()));
 
-      const response = await fetch('http://localhost:5009/api/proposals', {
+      const response = await fetch('https://sportify-equipement.onrender.com/api/proposals', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

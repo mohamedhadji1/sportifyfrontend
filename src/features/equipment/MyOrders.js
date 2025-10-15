@@ -27,7 +27,7 @@ const MyOrders = () => {
       if (filter !== 'all') params.append('status', filter);
       
       const response = await axios.get(
-        `http://localhost:5009/api/orders?${params}`,
+        `https://sportify-equipement.onrender.com/api/orders?${params}`,
         {
           headers: { 'x-auth-token': token }
         }
@@ -83,7 +83,7 @@ const MyOrders = () => {
       
       // Créer le payment intent
       const response = await axios.post(
-        'http://localhost:5009/api/payments/create-payment-intent',
+        'https://sportify-equipement.onrender.com/api/payments/create-payment-intent',
         { orderId: order._id },
         {
           headers: { 'x-auth-token': token }

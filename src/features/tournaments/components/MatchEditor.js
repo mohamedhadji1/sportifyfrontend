@@ -278,7 +278,7 @@ const MatchEditor = ({
       
       // Send ALL data in ONE request to save to PlayerStats
       const response = await fetch(
-        `http://localhost:5006/api/tournaments/${tournament._id}/matches/${matchId}/result`,
+        `https://service-tournament.onrender.com/api/tournaments/${tournament._id}/matches/${matchId}/result`,
         {
           method: 'PUT',
           headers: {

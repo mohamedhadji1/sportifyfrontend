@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
-const API_BASE = process.env.REACT_APP_TOURNAMENT_SERVICE_URL || 'http://localhost:5006/api/tournaments';
+const API_BASE = process.env.REACT_APP_TOURNAMENT_SERVICE_URL || 'https://service-tournament.onrender.com/api/tournaments';
 
 async function fetchTournaments() {
   const res = await axios.get(API_BASE);

@@ -96,7 +96,7 @@ const AddTeamsModal = ({ open, onClose, tournament, onTeamsAdded }) => {
       const token = localStorage.getItem('token');
       console.log('Token:', token ? 'EXISTS' : 'MISSING');
       
-      const url = `http://localhost:5006/api/tournaments/${tournament._id}`;
+      const url = `https://service-tournament.onrender.com/api/tournaments/${tournament._id}`;
       const payload = { teams: selectedTeams };
       
       console.log('🚀 Envoi de la requête PUT vers:', url);

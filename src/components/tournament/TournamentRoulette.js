@@ -213,7 +213,7 @@ const TournamentRoulette = ({ tournament, onDrawCompleted }) => {
       console.log('Tournament ID:', tournament._id);
       console.log('Patch:', patch);
 
-      const response = await fetch(`http://localhost:5006/api/tournaments/${tournament._id}`, {
+      const response = await fetch(`https://service-tournament.onrender.com/api/tournaments/${tournament._id}`, {
         method: "PUT",
         headers: {
           "x-auth-token": token,

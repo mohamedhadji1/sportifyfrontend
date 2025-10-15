@@ -25,7 +25,7 @@ const TournamentDetails = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5006/api/tournaments/${tournamentId}/bracket`, {
+      const response = await axios.get(`https://service-tournament.onrender.com/api/tournaments/${tournamentId}/bracket`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -44,7 +44,7 @@ const TournamentDetails = () => {
     try {
       setStatsLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5006/api/tournaments/${tournamentId}/stats`, {
+      const response = await axios.get(`https://service-tournament.onrender.com/api/tournaments/${tournamentId}/stats`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

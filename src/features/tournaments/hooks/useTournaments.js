@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_BASE = process.env.REACT_APP_TOURNAMENT_SERVICE_URL || 'http://localhost:5006/api/tournaments';
+const API_BASE = process.env.REACT_APP_TOURNAMENT_SERVICE_URL || 'https://service-tournament.onrender.com/api/tournaments';
 
 export function useTournamentsList() {
   const [tournaments, setTournaments] = useState([]);

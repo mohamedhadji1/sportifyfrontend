@@ -20,7 +20,7 @@ const TournamentAwards = ({ tournament, isVisible, onClose }) => {
       console.log('🏆 Fetching tournament awards for:', tournament._id);
       
       const response = await fetch(
-        `http://localhost:5006/api/tournaments/${tournament._id}/statistics`,
+        `https://service-tournament.onrender.com/api/tournaments/${tournament._id}/statistics`,
         {
           headers: {
             'Authorization': `Bearer ${storedToken}`,

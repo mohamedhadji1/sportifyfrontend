@@ -109,7 +109,7 @@ const TournamentBracket = ({ tournament, onTournamentComplete }) => {
     // Charger depuis l'API
     try {
       console.log('🌐 Fetching bracket from API for tournament:', tournament._id);
-      const response = await fetch(`http://localhost:5006/api/tournaments/${tournament._id}/bracket`, {
+      const response = await fetch(`https://service-tournament.onrender.com/api/tournaments/${tournament._id}/bracket`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

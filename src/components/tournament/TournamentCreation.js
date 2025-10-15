@@ -103,7 +103,7 @@ const TournamentCreation = ({ availableTeams, onTournamentCreated, loading }) =>
       if (token) {
         headers["Authorization"] = `Bearer ${token}`
       }
-      const response = await fetch("http://localhost:5006/api/tournaments/knockout", {
+      const response = await fetch("https://service-tournament.onrender.com/api/tournaments/knockout", {
         method: "POST",
         headers,
         body: JSON.stringify({

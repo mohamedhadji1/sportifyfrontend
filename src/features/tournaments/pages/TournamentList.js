@@ -173,7 +173,7 @@ const TournamentList = () => {
       setLoading(true);
       console.log('Fetching tournaments...');
       
-      const response = await axios.get('http://localhost:5006/api/tournaments');
+      const response = await axios.get('https://service-tournament.onrender.com/api/tournaments');
       
       console.log('API Response:', response.data);
       
@@ -234,7 +234,7 @@ const TournamentList = () => {
   const fetchTournamentStats = async (tournamentId) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5006/api/tournaments/${tournamentId}/stats`, {
+      const response = await axios.get(`https://service-tournament.onrender.com/api/tournaments/${tournamentId}/stats`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

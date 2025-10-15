@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getImageUrl } from '../../../shared/utils/imageUtils';
 import { useToast, ToastContainer } from '../../../shared/ui/components/Toast';
 
-const TOURNAMENT_API = process.env.REACT_APP_TOURNAMENT_SERVICE_URL || 'http://localhost:5006/api/tournaments';
+const TOURNAMENT_API = process.env.REACT_APP_TOURNAMENT_SERVICE_URL || 'https://service-tournament.onrender.com/api/tournaments';
 const COMPANY_API = (process.env.REACT_APP_COMPANY_SERVICE_URL || 'https://sportify-company.onrender.com').replace(/\/$/, '');
 
 // Fetch manager's companies

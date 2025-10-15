@@ -239,7 +239,55 @@ const TournamentList = () => {
           'Authorization': `Bearer ${token}`
         }
       });
-      return response.data;
+      
+      const stats = response.data;
+      
+      // Fetch team names for all players
+      if (stats) {
+        const teamIds = new Set();
+        
+        // Collect all unique team IDs
+        ['topScorers', 'topAssists', 'topMVPs'].forEach(key => {
+          if (stats[key]) {
+            stats[key].forEach(player => {
+              if (player.teamId) teamIds.add(player.teamId);
+            });
+          }
+        });
+        
+        // Fetch team names from teams service
+        if (teamIds.size > 0) {
+          const teamNamesMap = {};
+          await Promise.all(
+            Array.from(teamIds).map(async (teamId) => {
+              try {
+                const teamResponse = await axios.get(`https://sportify-teams.onrender.com/api/teams/${teamId}`, {
+                  headers: { 'x-auth-token': token }
+                });
+                if (teamResponse.data) {
+                  teamNamesMap[teamId] = teamResponse.data.name;
+                }
+              } catch (err) {
+                console.error(`Error fetching team ${teamId}:`, err);
+              }
+            })
+          );
+          
+          // Update player objects with actual team names
+          ['topScorers', 'topAssists', 'topMVPs'].forEach(key => {
+            if (stats[key]) {
+              stats[key] = stats[key].map(player => ({
+                ...player,
+                teamName: player.teamId && teamNamesMap[player.teamId] 
+                  ? teamNamesMap[player.teamId] 
+                  : player.teamName || 'Unknown Team'
+              }));
+            }
+          });
+        }
+      }
+      
+      return stats;
     } catch (error) {
       console.error('Error fetching tournament stats:', error);
       return null;
